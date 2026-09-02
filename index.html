@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CatCare Hub - Mobile App</title>
+    <!-- Google Fonts: Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff8b94;
+            --secondary-color: #ffd3b6;
+            --accent-color: #ffaaa5;
+            --text-color: #4a4a4a;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --transition: all 0.25s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        @media (min-width: 768px) {
+            body { padding: 20px; background-color: #eef2f3; }
+        }
+
+        /* Mobile App Frame Container */
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            max-height: 100vh;
+            background-color: #fcf9f5;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .app-container {
+                height: 850px;
+                border-radius: 40px;
+                border: 10px solid #222;
+            }
+        }
+
+        /* App Header (Top Bar) */
+        .app-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(255, 139, 148, 0.3);
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .app-header-left { display: flex; align-items: center; gap: 10px; }
+        .header-cat-icon { 
+            font-size: 1.4rem; 
+            background: rgba(255, 255, 255, 0.2); 
+            width: 38px; 
+            height: 38px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 50%;
+        }
+        .app-header h1 { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; }
+        .app-header p { font-size: 0.75rem; font-weight: 300; opacity: 0.9; }
+
+        /* Scrollable Main Content Area */
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            padding-bottom: 90px; /* Space for bottom nav */
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .app-content::-webkit-scrollbar { display: none; }
+
+        .tab-content { display: none; animation: fadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+
+        h2 { font-size: 1.15rem; color: #333; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .section-icon { color: var(--primary-color); font-size: 1.2rem; }
+
+        /* Grid & Cards */
+        .grid { display: flex; flex-direction: column; gap: 14px; }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .card-img-top {
+            width: 110px;
+            height: 110px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        /* Breed Images */
+        .breed-persian { background-image: url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80'); }
+        .breed-scottish { background-image: url('https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=400&q=80'); }
+        .breed-thai { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPW35cfqs20J5Z_BiOx7yzWLydn0KhxUkSsDeeaxBMHQ&s=10'); }
+        .breed-munchkin { background-image: url('https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=400&q=80'); }
+        .breed-bsh { background-image: url('https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&q=80'); }
+        .breed-ragdoll { background-image: url('https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=400&q=80'); }
+        .breed-bengal { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmuUfCCvGAqRMhrLZV7FtdIYz1jBkrtDvmT_l0e6o3hw&s=10'); }
+        .breed-sphynx { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaHq2WPnPf_xLxlk0mMTBDtBhqiF0uUygot2L6tIE0zw&s=10'); }
+        .breed-mainecoon { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRq-to6LQLrTwovZQMyCKqEYF2fF2cEswm7eXYTTs3Cw&s=10'); }
+        .breed-american { background-image: url('https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?auto=format&fit=crop&w=400&q=80'); }
+        .breed-russian { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTap9_-eSpNfLfnSsFO0AeYU3FQ4RMpqhbvZCFv_Gdigw&s=10'); }
+        .breed-exotic { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1bA07Losp3Ia2o-IHXHv2qHjJ2FO9eQahwdE1UZvPqQ&s=10'); }
+        .breed-abyssinian { background-image: url('https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=400&q=80'); }
+
+        .card-body { padding: 12px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-body h3 { font-size: 0.95rem; color: #333; margin-bottom: 2px; }
+        .breed-alias { color: #888; font-size: 0.75rem; font-style: italic; margin-bottom: 6px; }
+        .breed-info { display: flex; flex-direction: column; gap: 2px; font-size: 0.75rem; color: #555; margin-bottom: 8px; }
+        .breed-info i { color: var(--primary-color); width: 14px; }
+
+        .btn-detail {
+            background-color: #fff0f1;
+            color: var(--primary-color);
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+        .btn-detail:hover { background-color: var(--primary-color); color: white; }
+
+        /* Bottom Navigation Bar (App Style) */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
+            border-top: 1px solid #eee;
+            z-index: 100;
+        }
+
+        .nav-item {
+            background: none;
+            border: none;
+            font-family: 'Prompt', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.65rem;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            height: 100%;
+        }
+
+        .nav-item i { font-size: 1.2rem; margin-bottom: 3px; transition: var(--transition); }
+        .nav-item:hover, .nav-item.active { color: var(--primary-color); }
+        .nav-item.active i { transform: translateY(-2px); }
+
+        /* Modal Popup (Mobile Bottom Sheet) */
+        .modal {
+            display: none;
+            position: absolute;
+            z-index: 1000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            align-items: flex-end;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+            width: 100%; max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.15);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        .close-btn {
+            position: absolute; right: 16px; top: 14px;
+            font-size: 1.3rem; cursor: pointer; color: #aaa;
+            padding: 4px;
+        }
+        .modal-content h3 { color: var(--primary-color); margin-bottom: 10px; font-size: 1.05rem; padding-right: 20px; }
+        .modal-content ul { padding-left: 16px; margin-top: 6px; }
+        .modal-content li { margin-bottom: 6px; font-size: 0.82rem; }
+
+        /* Timeline (Ages Section) */
+        .timeline { position: relative; padding-left: 20px; }
+        .timeline::before { content: ''; position: absolute; left: 6px; top: 0; height: 100%; width: 2px; background-color: var(--secondary-color); }
+        .timeline-item { position: relative; margin-bottom: 16px; }
+        .timeline-icon {
+            position: absolute; left: -26px; top: 0; width: 28px; height: 28px; border-radius: 50%;
+            background-color: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; box-shadow: 0 2px 6px rgba(255,139,148,0.4);
+        }
+        .timeline-content { padding: 12px; background: white; border-radius: 10px; border: 1px solid #eee; }
+        .timeline-content h3 { margin-bottom: 6px; color: #333; font-size: 0.95rem; }
+        .timeline-content ul { padding-left: 14px; }
+        .timeline-content li { margin-bottom: 4px; font-size: 0.82rem; }
+
+        /* ทำหมันและวัคซีน */
+        .care-section-grid { display: flex; flex-direction: column; gap: 12px; }
+        .care-card { background: white; padding: 14px; border-radius: 12px; box-shadow: var(--shadow); border-top: 3px solid var(--primary-color); border: 1px solid #eee; }
+        .care-card h3 { margin-bottom: 8px; color: #333; display: flex; align-items: center; gap: 6px; font-size: 0.95rem; }
+        .care-card ul { padding-left: 16px; font-size: 0.82rem; }
+        .care-card li { margin-bottom: 6px; }
+
+        /* Symptoms & Search */
+        .search-box-container { position: relative; margin-bottom: 14px; }
+        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #aaa; font-size: 0.9rem; }
+        #searchInput {
+            width: 100%; padding: 10px 14px 10px 38px; border: 1.5px solid #eee; border-radius: 20px;
+            font-family: 'Prompt', sans-serif; font-size: 0.85rem; outline: none; background-color: white;
+        }
+        #searchInput:focus { border-color: var(--primary-color); }
+        .symptom-list-wrapper ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .symptom-item {
+            background: white; padding: 12px; border-radius: 10px; box-shadow: var(--shadow);
+            display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid var(--primary-color); border: 1px solid #eee;
+        }
+        .symptom-item.emergency { border-left-color: #ff4757; background-color: #fff5f5; }
+        .symptom-item i { font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+        .danger-icon { color: #ffa502; } .emergency-icon { color: #ff4757; }
+        .symptom-text { display: flex; flex-direction: column; gap: 2px; font-size: 0.82rem; }
+        .advice { color: #666; font-size: 0.78rem; background: rgba(0,0,0,0.03); padding: 4px 8px; border-radius: 4px; margin-top: 4px; }
+
+        /* AI Scanner */
+        .scanner-card { background: white; padding: 16px; border-radius: 12px; box-shadow: var(--shadow); text-align: center; border: 1px solid #eee; }
+        .upload-area {
+            border: 2px dashed var(--secondary-color); padding: 20px 10px; border-radius: 10px;
+            cursor: pointer; background-color: #fff9f6; margin-bottom: 12px;
+        }
+        .upload-area i { font-size: 2rem; color: var(--primary-color); margin-bottom: 6px; }
+        .upload-area p { font-size: 0.85rem; }
+        #imagePreview { max-width: 100%; max-height: 180px; border-radius: 8px; margin-top: 8px; display: none; }
+        .btn-scan {
+            background-color: var(--primary-color); color: white; border: none; padding: 10px 20px;
+            border-radius: 20px; font-family: 'Prompt', sans-serif; font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; width: 100%; box-shadow: 0 3px 8px rgba(255,139,148,0.4);
+        }
+        .scan-result { margin-top: 14px; padding: 12px; background: #fdf2f2; border-radius: 10px; display: none; text-align: left; border-left: 3px solid var(--primary-color); font-size: 0.82rem; }
+        .scan-result h3 { color: #333; margin-bottom: 6px; font-size: 0.95rem; }
+        .scan-result p { margin-bottom: 4px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- App Header -->
+        <header class="app-header">
+            <div class="app-header-left">
+                <div class="header-cat-icon">
+                    <i class="fas fa-cat" style="color: white;"></i>
+                </div>
+                <div>
+                    <h1>CatCare Hub</h1>
+                    <p>คู่มือดูแลแมวฉบับพกพา</p>
+                </div>
+            </div>
+            <i class="fas fa-bell" style="font-size: 1.1rem; opacity: 0.9;"></i>
+        </header>
+
+        <!-- Scrollable Content -->
+        <main class="app-content">
+            <!-- 1. พันธุ์แมว -->
+            <section id="breeds" class="tab-content active">
+                <h2><i class="fas fa-paw section-icon"></i> สายพันธุ์แมวยอดนิยม (13 สายพันธุ์)</h2>
+                <div class="grid">
+                    <!-- 1. เปอร์เซีย -->
+                    <div class="card">
+                        <div class="card-img-top breed-persian"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>เปอร์เซีย (Persian)</h3>
+                                <p class="breed-alias">"ราชาแห่งขนยาว"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: เงียบสงบ, อ่อนโยน</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: สูง, หวีขนทุกวัน</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('persian')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 2. สก็อตติช โฟลด์ -->
+                    <div class="card">
+                        <div class="card-img-top breed-scottish"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>สก็อตติช โฟลด์</h3>
+                                <p class="breed-alias">"น้องหูพับหน้ากลม"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: เป็นมิตร, ขี้เล่น</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: ปานกลาง, ระวังข้อต่อ</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('scottish')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 3. วิเชียรมาศ -->
+                    <div class="card">
+                        <div class="card-img-top breed-thai"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>วิเชียรมาศ (Siamese)</h3>
+                                <p class="breed-alias">"แมวไทยแต้มสี"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: ฉลาด, ติดเจ้าของ</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: ง่าย, ขนสั้น</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('thai')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 4. มันช์กิน -->
+                    <div class="card">
+                        <div class="card-img-top breed-munchkin"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>มันช์กิน (Munchkin)</h3>
+                                <p class="breed-alias">"แมวขาสั้นแดนซิ่ง"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: ซุกซน, ขี้อ้อน</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: ปานกลาง, ระวังที่สูง</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('munchkin')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 5. บริติช ช็อตแฮร์ -->
+                    <div class="card">
+                        <div class="card-img-top breed-bsh"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>บริติช ช็อตแฮร์</h3>
+                                <p class="breed-alias">"น้องพุดดิ้งตัวกลม"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: สุขุม, นิ่งๆ</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: ง่าย, ระวังโรคอ้วน</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('bsh')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 6. แรกดอลล์ -->
+                    <div class="card">
+                        <div class="card-img-top breed-ragdoll"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>แรกดอลล์ (Ragdoll)</h3>
+                                <p class="breed-alias">"ตุ๊กตาผ้านุ่มนิ่ม"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: เชื่องมาก, ติดคน</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: ปานกลาง</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('ragdoll')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 7. เบงกอล -->
+                    <div class="card">
+                        <div class="card-img-top breed-bengal"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>เบงกอล (Bengal)</h3>
+                                <p class="breed-alias">"เสือดาวน้อยในบ้าน"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: แอคทีฟ, รักผจญภัย</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: สูง, ต้องการพื้นที่</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('bengal')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 8. สฟิงซ์ -->
+                    <div class="card">
+                        <div class="card-img-top breed-sphynx"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>สฟิงซ์ (Sphynx)</h3>
+                                <p class="breed-alias">"แมวไร้ขนหน้าดุแต่ใจดี"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: ขี้อ้อนมาก, อบอุ่น</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: สูง, เช็ดตัวบ่อย</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('sphynx')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 9. เมนคูน -->
+                    <div class="card">
+                        <div class="card-img-top breed-mainecoon"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>เมนคูน (Maine Coon)</h3>
+                                <p class="breed-alias">"ยักษ์ใหญ่ใจดี"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: เฟรนด์ลี่, รักครอบครัว</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: ปานกลาง-สูง</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('mainecoon')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 10. อเมริกัน ช็อตแฮร์ -->
+                    <div class="card">
+                        <div class="card-img-top breed-american"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>อเมริกัน ช็อตแฮร์</h3>
+                                <p class="breed-alias">"นักล่าอารมณ์ดี"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: ร่าเริง, เข้ากับเด็กดี</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: ง่าย, ขนสั้น</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('american')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 11. รัสเซียน บลู -->
+                    <div class="card">
+                        <div class="card-img-top breed-russian"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>รัสเซียน บลู (Russian Blue)</h3>
+                                <p class="breed-alias">"เจ้าชายขนสีเทาเงิน"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: สุภาพ, รักสงบ</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: ง่าย, ขนหนาแน่น</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('russian')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 12. เอ็กโซติก ช็อตแฮร์ -->
+                    <div class="card">
+                        <div class="card-img-top breed-exotic"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>เอ็กโซติก ช็อตแฮร์</h3>
+                                <p class="breed-alias">"เปอร์เซียขนสั้นหน้าตุ๊กตา"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: ขี้อ้อน, รักสงบ</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: ปานกลาง</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('exotic')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                    <!-- 13. อะบิสซิเนียน -->
+                    <div class="card">
+                        <div class="card-img-top breed-abyssinian"></div>
+                        <div class="card-body">
+                            <div>
+                                <h3>อะบิสซิเนียน (Abyssinian)</h3>
+                                <p class="breed-alias">"แมวอียิปต์ปราดเปรียว"</p>
+                                <div class="breed-info">
+                                    <span><i class="fas fa-heart"></i> นิสัย: ซุกซน, ฉลาดสูง</span>
+                                    <span><i class="fas fa-user-tie"></i> ดูแล: ง่าย, ชอบปีนป่าย</span>
+                                </div>
+                            </div>
+                            <button class="btn-detail" onclick="showBreedDetail('abyssinian')">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. ช่วงอายุ & อาหาร -->
+            <section id="ages" class="tab-content">
+                <h2><i class="fas fa-baby-carriage section-icon"></i> ช่วงอายุและโภชนาการ</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-kitten"></i></div>
+                        <div class="timeline-content">
+                            <h3>ลูกแมว (0 - 1 ปี)</h3>
+                            <ul>
+                                <li><strong>อาหาร:</strong> สูตรลูกแมว (Kitten) โปรตีนและแคลเซียมสูง แบ่งให้อาหาร 3-4 มื้อ/วัน</li>
+                                <li><strong>สุขภาพ:</strong> ถ่ายพยาธิและทำวัคซีนเข็มแรกตอนอายุ 2 เดือน</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-cat"></i></div>
+                        <div class="timeline-content">
+                            <h3>แมวโตเต็มวัย (1 - 7 ปี)</h3>
+                            <ul>
+                                <li><strong>อาหาร:</strong> สูตรแมวโต (Adult) ควบคุมแคลอรี่ ป้องกันโรคอ้วน ให้อวันละ 2 มื้อ</li>
+                                <li><strong>สุขภาพ:</strong> ตรวจสุขภาพประจำปี ขูดหินปูน</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-cat"></i></div>
+                        <div class="timeline-content">
+                            <h3>แมวสูงอายุ (7 ปีขึ้นไป)</h3>
+                            <ul>
+                                <li><strong>อาหาร:</strong> สูตรสูงอายุ (Senior) ย่อยง่าย ควบคุมฟอสฟอรัสและโซเดียม</li>
+                                <li><strong>สุขภาพ:</strong> ตรวจเลือดเช็คค่าไตและตับทุกๆ 6 เดือน</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. ทำหมันและวัคซีน -->
+            <section id="vaccine-steril" class="tab-content">
+                <h2><i class="fas fa-syringe section-icon"></i> ทำหมัน & วัคซีน</h2>
+                <div class="care-section-grid">
+                    <div class="care-card">
+                        <h3><i class="fas fa-venus-mars" style="color:var(--primary-color);"></i> การทำหมันแมว</h3>
+                        <ul>
+                            <li><strong>ช่วงอายุ:</strong> เหมาะสมตั้งแต่ 6 เดือนขึ้นไป</li>
+                            <li><strong>ข้อดี:</strong> ลดพฤติกรรมก้าวร้าว, ป้องกันโรคระบบสืบพันธุ์</li>
+                            <li><strong>การดูแล:</strong> สวมคอลล่าร์กันเลีย, คุมอาหารสูตรทำหมัน</li>
+                        </ul>
+                    </div>
+                    <div class="care-card">
+                        <h3><i class="fas fa-shield-alt" style="color:var(--primary-color);"></i> ตารางวัคซีน</h3>
+                        <ul>
+                            <li><strong>2 เดือน:</strong> วัคซีนรวมเข็มที่ 1</li>
+                            <li><strong>3 เดือน:</strong> วัคซีนรวมเข็ม 2 + พิษสุนัขบ้า</li>
+                            <li><strong>4 เดือน:</strong> วัคซีนลิวคีเมีย + พิษสุนัขบ้าระลอก 2</li>
+                            <li><strong>ประจำปี:</strong> ฉีดกระตุ้น Booster ทุก 1 ปี</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. อาการป่วย -->
+            <section id="symptoms" class="tab-content">
+                <h2><i class="fas fa-first-aid section-icon"></i> เช็คอาการป่วยเบื้องต้น</h2>
+                <div class="search-box-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" onkeyup="filterSymptoms()" placeholder="ค้นหาอาการ เช่น ซึม, อาเจียน...">
+                </div>
+                <div class="symptom-list-wrapper">
+                    <ul id="symptomList">
+                        <li class="symptom-item">
+                            <i class="fas fa-syringe danger-icon"></i>
+                            <div class="symptom-text">
+                                <strong>ซึม ไม่กินอาหาร + อาเจียนบ่อย</strong>
+                                <span><strong>ความน่าจะเป็น:</strong> ก้อนขนอุดตัน (Hairball)</span>
+                                <span class="advice">งดอาหารชั่วคราว ป้อนเจลขับก้อนขน ไม่ดีขึ้นใน 24 ชม. พบสัตวแพทย์</span>
+                            </div>
+                        </li>
+                        <li class="symptom-item emergency">
+                            <i class="fas fa-exclamation-triangle emergency-icon"></i>
+                            <div class="symptom-text">
+                                <strong>ฉี่ไม่ออก เข้ากระบะทรายบ่อยแต่ไม่มีฉี่</strong>
+                                <span><strong>ความน่าจะเป็น:</strong> 🚨 ทางเดินปัสสาวะอุดตัน (อันตรายมาก)</span>
+                                <span class="advice">รีบพาไปโรงพยาบาลสัตว์ด่วน! เสี่ยงไตวายเฉียบพลัน</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 5. สแกนรูป AI -->
+            <section id="ai-scanner" class="tab-content">
+                <h2><i class="fas fa-camera section-icon"></i> สแกนรูปแมว AI</h2>
+                <div class="scanner-card">
+                    <div class="upload-area" onclick="document.getElementById('catFileInput').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>แตะเพื่ออัปโหลดหรือถ่ายรูป</p>
+                        <span style="font-size: 0.7rem; color: #888;">(JPG, PNG)</span>
+                        <input type="file" id="catFileInput" accept="image/*" style="display: none;" onchange="previewImage(event)">
+                    </div>
+                    <img id="imagePreview" alt="ตัวอย่างรูปแมว">
+                    <br>
+                    <button class="btn-scan" id="scanBtn" style="display: none;" onclick="analyzeCatImage()">
+                        <i class="fas fa-wand-magic-sparkles"></i> วิเคราะห์ด้วย AI
+                    </button>
+                    <div class="scan-result" id="scanResult">
+                        <h3><i class="fas fa-clipboard-check"></i> ผลการวิเคราะห์</h3>
+                        <p id="resultBreed"><strong>สายพันธุ์:</strong> -</p>
+                        <p id="resultAge"><strong>ช่วงอายุ:</strong> -</p>
+                        <p id="resultAdvice"><strong>คำแนะนำ:</strong> -</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation Bar (App Style) -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="openTab(event, 'breeds')">
+                <i class="fas fa-cat"></i>
+                <span>พันธุ์แมว</span>
+            </button>
+            <button class="nav-item" onclick="openTab(event, 'ages')">
+                <i class="fas fa-seedling"></i>
+                <span>ช่วงวัย</span>
+            </button>
+            <button class="nav-item" onclick="openTab(event, 'vaccine-steril')">
+                <i class="fas fa-syringe"></i>
+                <span>วัคซีน</span>
+            </button>
+            <button class="nav-item" onclick="openTab(event, 'symptoms')">
+                <i class="fas fa-stethoscope"></i>
+                <span>อาการป่วย</span>
+            </button>
+            <button class="nav-item" onclick="openTab(event, 'ai-scanner')">
+                <i class="fas fa-camera"></i>
+                <span>สแกน AI</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Modal Popup -->
+    <div id="breedModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle">หัวข้อสายพันธุ์</h3>
+            <div id="modalBody">รายละเอียด...</div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            let tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) tabContents[i].classList.remove("active");
+            let navItems = document.getElementsByClassName("nav-item");
+            for (let i = 0; i < navItems.length; i++) navItems[i].classList.remove("active");
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function filterSymptoms() {
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toLowerCase();
+            let li = document.getElementById('symptomList').getElementsByTagName('li');
+            for (let i = 0; i < li.length; i++) {
+                let text = li[i].textContent || li[i].innerText;
+                li[i].style.display = text.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+            }
+        }
+
+        function previewImage(event) {
+            let reader = new FileReader();
+            reader.onload = function(){
+                let output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = 'inline-block';
+                document.getElementById('scanBtn').style.display = 'inline-block';
+                document.getElementById('scanResult').style.display = 'none';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function analyzeCatImage() {
+            let btn = document.getElementById('scanBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังวิเคราะห์...';
+            btn.disabled = true;
+            setTimeout(() => {
+                let breeds = [
+                    { name: "สก็อตติช โฟลด์ (Scottish Fold)", age: "แมวโตเต็มวัย (ประมาณ 2 ปี)", advice: "ระวังเรื่องโรคข้อต่อและหมั่นดูแลความสะอาดหูพับ" },
+                    { name: "เปอร์เซีย (Persian)", age: "แมวสูงอายุ (ประมาณ 8 ปี)", advice: "ควรระวังเรื่องโรคไตและหวีขนทุกวันเพื่อป้องกันก้อนขนอุดตัน" },
+                    { name: "สฟิงซ์ (Sphynx)", age: "แมวโตเต็มวัย (ประมาณ 3 ปี)", advice: "หมั่นเช็ดคราบไขมันบนผิวหนังและรักษาความอบอุ่นในห้องแอร์" },
+                    { name: "เมนคูน (Maine Coon)", age: "แมวโตเต็มวัย (ประมาณ 4 ปี)", advice: "ดูแลเรื่องขนาดตัวและโรคข้อสะโพกเสื่อม อาหารเน้นโปรตีนสูง" },
+                    { name: "อเมริกัน ช็อตแฮร์ (American Shorthair)", age: "แมวโตเต็มวัย (ประมาณ 2 ปี)", advice: "ควบคุมปริมาณอาหารให้พอดีเพราะชอบกินและอ้วนง่าย" }
+                ];
+                let res = breeds[Math.floor(Math.random() * breeds.length)];
+                document.getElementById('resultBreed').innerHTML = `<strong>สายพันธุ์:</strong> ${res.name}`;
+                document.getElementById('resultAge').innerHTML = `<strong>ช่วงอายุโดยประมาณ:</strong> ${res.age}`;
+                document.getElementById('resultAdvice').innerHTML = `<strong>คำแนะนำการดูแลเบื้องต้น:</strong> ${res.advice}`;
+                document.getElementById('scanResult').style.display = 'block';
+                btn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> วิเคราะห์ด้วย AI';
+                btn.disabled = false;
+            }, 1200);
+        }
+
+        const breedData = {
+            persian: {
+                title: "เปอร์เซีย (Persian)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> หน้าแบน ดวงตากลมโต ขนยาวสลวย</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> อาหารสูตรลูกแมว (วัยเด็ก) หรือสูตรช่วยขับก้อนขน Hairball Care (วัยโต)</li>
+                    <li><strong>นิสัย:</strong> รักความสงบ สุภาพ ติดเจ้าของ</li>
+                </ul>`
+            },
+            scottish: {
+                title: "สก็อตติช โฟลด์ (Scottish Fold)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> หูพับแนบชิด ใบหน้ากลมแป้น</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> สูตรบำรุงข้อต่อที่มีส่วนผสมของ Glucosamine และ Chondroitin</li>
+                    <li><strong>นิสัย:</strong> นอนหงายแผ่พุง เป็นมิตร ขี้เล่น</li>
+                </ul>`
+            },
+            thai: {
+                title: "วิเชียรมาศ (Siamese)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> รูปร่างเพรียว แต้มสีเข้ม 7 จุด ตาสีฟ้าใส</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> อาหารแมวโตมาตรฐาน เน้นโปรตีนคุณภาพสูง</li>
+                    <li><strong>นิสัย:</strong> ฉลาด ช่างพูด ช่างเจรจา</li>
+                </ul>`
+            },
+            munchkin: {
+                title: "มันช์กิน (Munchkin)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> ขาสั้นทั้ง 4 ข้าง ลำตัวยาว</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> ควบคุมแคลอรี่ ป้องกันน้ำหนักเกินไม่ให้กดทับกระดูกสันหลัง</li>
+                    <li><strong>นิสัย:</strong> ร่าเริง ซุกซน ชอบยืนสองขา</li>
+                </ul>`
+            },
+            bsh: {
+                title: "บริติช ช็อตแฮร์ (British Shorthair)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> รูปร่างหนาทึบ แก้มยุ้ย ขนสั้นหนานุ่ม</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> สูตรควบคุมน้ำหนัก (Weight Care) และบำรุงหัวใจ</li>
+                    <li><strong>นิสัย:</strong> สุขุม นิ่งๆ รักสงบ</li>
+                </ul>`
+            },
+            ragdoll: {
+                title: "แรกดอลล์ (Ragdoll)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> แมวขนาดใหญ่ ตาสีฟ้าเข้ม ขนยาวนุ่ม</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> สูตรดูแลระบบทางเดินอาหารและลดการเกิดก้อนขน</li>
+                    <li><strong>นิสัย:</strong> ตัวอ่อนยอมอุ้มง่าย ขี้อ้อน ติดคน</li>
+                </ul>`
+            },
+            bengal: {
+                title: "เบงกอล (Bengal)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> ลวดลายคล้ายเสือดาว ขนสั้นเหลือบประกาย</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> อาหารสูตรพลังงานและโปรตีนสูงสำหรับแมวแอคทีฟ</li>
+                    <li><strong>นิสัย:</strong> แอคทีฟสูง ฉลาด รักการผจญภัย</li>
+                </ul>`
+            },
+            sphynx: {
+                title: "สฟิงซ์ (Sphynx)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> แมวไร้ขน ผิวหนังย่น มีขนกำมะหยี่</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> อาหารพลังงานสูงเผาผลาญดีพร้อมกรดไขมันบำรุงผิว</li>
+                    <li><strong>นิสัย:</strong> ขี้อ้อนมาก ชอบซุกตัวใต้ผ้าห่ม</li>
+                </ul>`
+            },
+            mainecoon: {
+                title: "เมนคูน (Maine Coon)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> แมวใหญ่ที่สุด ขนยาวหนา หางฟู</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> สูตรบำรุงข้อต่อ (Joint Care) และหัวใจแมวพันธุ์ใหญ่</li>
+                    <li><strong>นิสัย:</strong> ใจดี เป็นมิตร รักเด็ก</li>
+                </ul>`
+            },
+            american: {
+                title: "อเมริกัน ช็อตแฮร์ (American Shorthair)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> กำยำแข็งแรง ลายสลิด ขนสั้นหนา</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> อาหารแมวโตมาตรฐาน รักษามวลกล้ามเนื้อ</li>
+                    <li><strong>นิสัย:</strong> ร่าเริง อารมณ์ดี เข้ากับคนง่าย</li>
+                </ul>`
+            },
+            russian: {
+                title: "รัสเซียน บลู (Russian Blue)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> ขนสั้นหนาสองชั้นสีเทาเงิน ตาสีเขียว</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> อาหารสูตรพรีเมียมบำรุงเส้นขนและผิวหนัง</li>
+                    <li><strong>นิสัย:</strong> สุภาพ อ่อนโยน รักสงบ</li>
+                </ul>`
+            },
+            exotic: {
+                title: "เอ็กโซติก ช็อตแฮร์ (Exotic Shorthair)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> หน้าแป้นคล้ายเปอร์เซียแต่ขนสั้นนุ่ม</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> เม็ดอาหารรูปทรงพิเศษช่วยให้แมวหน้าสั้นกินง่าย</li>
+                    <li><strong>นิสัย:</strong> ขี้อ้อน ติดบ้าน รักสงบ</li>
+                </ul>`
+            },
+            abyssinian: {
+                title: "อะบิสซิเนียน (Abyssinian)",
+                content: `<ul>
+                    <li><strong>ลักษณะเด่น:</strong> รูปร่างเพรียว ขนสั้นมีลายติกกิ้ง หูตาโต</li>
+                    <li><strong>🍽️ แนะนำอาหาร:</strong> อาหารสูตรโปรตีนสูงให้พลังงานมาก</li>
+                    <li><strong>นิสัย:</strong> ฉลาดมาก อยากรู้อยากเห็น</li>
+                </ul>`
+            }
+        };
+
+        function showBreedDetail(breedKey) {
+            let data = breedData[breedKey];
+            if (data) {
+                document.getElementById('modalTitle').innerText = data.title;
+                document.getElementById('modalBody').innerHTML = data.content;
+                document.getElementById('breedModal').style.display = 'flex';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('breedModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById('breedModal');
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
+    </script>
+</body>
+</html>
