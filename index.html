@@ -369,7 +369,7 @@
         .breed-husky { background-image: url('https://images.unsplash.com/photo-1605568427561-40dd23c2acea?auto=format&fit=crop&w=400&q=80'); }
         .breed-corgi { background-image: url('https://images.unsplash.com/photo-1612536057832-2ff7c3363408?auto=format&fit=crop&w=400&q=80'); }
 
-        /* Breed Images - Bird (10 species) */
+        /* Breed Images - Bird */
         .breed-budgie { background-image: url('https://images.unsplash.com/photo-1522858547137-f1d6552fb585?auto=format&fit=crop&w=400&q=80'); }
         .breed-cockatiel { background-image: url('https://images.unsplash.com/photo-1555169062-013468b1623e?auto=format&fit=crop&w=400&q=80'); }
         .breed-lovebird { background-image: url('https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=400&q=80'); }
@@ -381,7 +381,7 @@
         .breed-dove { background-image: url('https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=400&q=80'); }
         .breed-cockatoo { background-image: url('https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=400&q=80'); }
 
-        /* Breed Images - Fish (11 species) */
+        /* Breed Images - Fish */
         .breed-betta { background-image: url('https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=400&q=80'); }
         .breed-guppy { background-image: url('https://images.unsplash.com/photo-1535591273668-578e31182c4f?auto=format&fit=crop&w=400&q=80'); }
         .breed-goldfish { background-image: url('https://images.unsplash.com/photo-1524704796727-817e94514217?auto=format&fit=crop&w=400&q=80'); }
@@ -550,7 +550,7 @@
             <div class="auth-card">
                 <div class="auth-logo-container"><i class="fas fa-paw"></i></div>
                 <h2>PetCare Hub</h2>
-                <p id="authSubtitle">แอปพลิเคชันคู่หูคนรักสัตว์เลี้ยงและบริการคลินิกครบวงจร</p>
+                <p id="authSubtitle">สวัสดี, ผู้ใช้งาน 🐾 เจ้าของสัตว์เลี้ยง เอาอวตาร/รูปกลับมาด้วยตรงวงกลม</p>
 
                 <div class="role-selector">
                     <button type="button" class="role-btn active" id="roleUserBtn" onclick="setAuthRole('user')">
@@ -627,7 +627,7 @@
         </header>
 
         <main class="app-content">
-            <!-- แท็บที่ 1: สายพันธุ์สัตว์ -->
+            <!-- แท็บที่ 1: สายพันธุ์สัตว์ (สำหรับ User) หรือ ข้อมูลคลินิกของฉัน (สำหรับ Clinic) -->
             <section id="breeds" class="tab-content active">
                 <h2><i class="fas fa-paw section-icon"></i> เลือกชนิดสัตว์เลี้ยง</h2>
                 
@@ -933,7 +933,7 @@
                     </div>
                 </div>
 
-                <!-- นก (เพิ่มให้อีก 7 สายพันธุ์ รวมเป็น 10 สายพันธุ์) -->
+                <!-- นก -->
                 <div id="breedSection-bird" class="species-breed-section" style="display: none;">
                     <h3 style="font-size: 1.0rem; color: #2d3436; margin-bottom: 12px;"><i class="fas fa-dove" style="color:var(--primary-color);"></i> สายพันธุ์นกยอดนิยม (10 สายพันธุ์)</h3>
                     <div class="grid">
@@ -979,7 +979,6 @@
                                 <button class="btn-detail" onclick="showBreedDetail('bird', 'lovebird')">ดูรายละเอียด</button>
                             </div>
                         </div>
-                        <!-- เพิ่ม 7 สายพันธุ์ใหม่ -->
                         <div class="card">
                             <div class="card-img-top breed-sunconure"></div>
                             <div class="card-body">
@@ -1081,7 +1080,7 @@
                     </div>
                 </div>
 
-                <!-- ปลา (ลบออก 3 สายพันธุ์ เหลือ 11 สายพันธุ์) -->
+                <!-- ปลา -->
                 <div id="breedSection-fish" class="species-breed-section" style="display: none;">
                     <h3 style="font-size: 1.0rem; color: #2d3436; margin-bottom: 12px;"><i class="fas fa-fish" style="color:var(--primary-color);"></i> สายพันธุ์ปลายอดนิยม (11 สายพันธุ์)</h3>
                     <div class="grid">
@@ -1348,7 +1347,7 @@
                 </div>
             </section>
 
-            <!-- แท็บที่ 2: สัตว์เลี้ยงของฉัน -->
+            <!-- แท็บที่ 2: สัตว์เลี้ยงของฉัน (สำหรับ User) หรือ หน้าจัดการคิวจอง/โฆษณา (สำหรับ Clinic) -->
             <section id="userCatContent" class="tab-content">
                 <h2><i class="fas fa-heart section-icon"></i> สัตว์เลี้ยงของฉัน</h2>
                 
@@ -1398,7 +1397,7 @@
                 <h2><i class="fas fa-hospital-user section-icon"></i> คลินิกสัตว์ใกล้คุณ & จองคิว</h2>
                 
                 <div class="clinic-search-bar">
-                    <input type="text" id="clinicSearchInput" placeholder="ค้นหาชื่อคลินิก..." oninput="filterClinics()">
+                    <input type="text" id="clinicSearchInput" placeholder="ค้นหาจากจังหวัดหรือชื่อคลินิก..." oninput="filterClinics()">
                     <select id="clinicProvinceFilter" onchange="filterClinics()">
                         <option value="">ทุกจังหวัด</option>
                     </select>
@@ -1407,16 +1406,16 @@
                 <div id="clinicsListContainer"></div>
             </section>
 
-            <!-- แท็บที่ 4: ความรู้ & อาการเบื้องต้น (อัปเดตเฉพาะ หมา, แมว, นก, ปลา, กระต่าย ชนิดละ 2-3 อาการ) -->
+            <!-- แท็บที่ 4: ความรู้ & อาการ -->
             <section id="knowledge" class="tab-content">
-                <h2><i class="fas fa-book-medical section-icon"></i> ความรู้สัตว์เลี้ยง & อาการป่วยเบื้องต้น (5 ชนิดสัตว์)</h2>
+                <h2><i class="fas fa-book-medical section-icon"></i> ความรู้สัตว์เลี้ยง & อาการป่วยเบื้องต้น</h2>
                 
                 <div class="action-card" style="border-top: 3px solid #9b59b6;">
                     <h3><i class="fas fa-stethoscope"></i> เช็คอาการป่วยเบื้องต้นแยกตามชนิดสัตว์</h3>
                     <p style="font-size: 0.78rem; color: #636e72; margin-bottom: 12px;">เลือกอาการผิดปกติของสัตว์แต่ละประเภท เพื่อดูแนวทางบรรเทาเบื้องต้นก่อนไปพบสัตวแพทย์</p>
                     
                     <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
-                        <!-- แมว (3 อาการ) -->
+                        <!-- แมว -->
                         <li style="background: white; padding: 14px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #ff6b81; border: 1px solid #f1f2f6;">
                             <i class="fas fa-cat" style="color: #ff6b81; font-size: 1.1rem; margin-top: 2px;"></i>
                             <div style="display: flex; flex-direction: column; gap: 2px; font-size: 0.82rem; width: 100%;">
@@ -1426,7 +1425,7 @@
                             </div>
                         </li>
 
-                        <!-- หมา (3 อาการ) -->
+                        <!-- หมา -->
                         <li style="background: white; padding: 14px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #3498db; border: 1px solid #f1f2f6;">
                             <i class="fas fa-dog" style="color: #3498db; font-size: 1.1rem; margin-top: 2px;"></i>
                             <div style="display: flex; flex-direction: column; gap: 2px; font-size: 0.82rem; width: 100%;">
@@ -1436,7 +1435,7 @@
                             </div>
                         </li>
 
-                        <!-- นก (3 อาการ) -->
+                        <!-- นก -->
                         <li style="background: white; padding: 14px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #f1c40f; border: 1px solid #f1f2f6;">
                             <i class="fas fa-dove" style="color: #f1c40f; font-size: 1.1rem; margin-top: 2px;"></i>
                             <div style="display: flex; flex-direction: column; gap: 2px; font-size: 0.82rem; width: 100%;">
@@ -1446,7 +1445,7 @@
                             </div>
                         </li>
 
-                        <!-- ปลา (3 อาการ) -->
+                        <!-- ปลา -->
                         <li style="background: white; padding: 14px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #00cec9; border: 1px solid #f1f2f6;">
                             <i class="fas fa-fish" style="color: #00cec9; font-size: 1.1rem; margin-top: 2px;"></i>
                             <div style="display: flex; flex-direction: column; gap: 2px; font-size: 0.82rem; width: 100%;">
@@ -1456,7 +1455,7 @@
                             </div>
                         </li>
 
-                        <!-- กระต่าย (3 อาการ) -->
+                        <!-- กระต่าย -->
                         <li style="background: white; padding: 14px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #e74c3c; border: 1px solid #f1f2f6;">
                             <i class="fas fa-carrot" style="color: #e74c3c; font-size: 1.1rem; margin-top: 2px;"></i>
                             <div style="display: flex; flex-direction: column; gap: 2px; font-size: 0.82rem; width: 100%;">
@@ -1482,23 +1481,23 @@
                 </div>
             </section>
 
-            <!-- แดชบอร์ดคลินิก -->
+            <!-- แดชบอร์ดคลินิก (สำหรับโหมดคลินิก) -->
             <section id="clinicDashboardContent" class="tab-content" style="display: none;">
                 <h2><i class="fas fa-hospital section-icon"></i> แดชบอร์ดจัดการคลินิกสัตว์</h2>
                 
                 <div class="action-card" style="border-top: 3px solid #27ae60;">
-                    <h3><i class="fas fa-store"></i> ข้อมูลคลินิกของคุณ</h3>
+                    <h3><i class="fas fa-store"></i> 1. ข้อมูลคลินิกของฉัน</h3>
                     <div class="form-row">
                         <label>ชื่อคลินิก</label>
-                        <input type="text" id="clinicNameInput">
+                        <input type="text" id="clinicNameInput" placeholder="ระบุชื่อคลินิก">
                     </div>
                     <div class="form-row">
                         <label>จังหวัดที่ตั้ง</label>
                         <select id="clinicProvinceInput" class="thai-provinces-dropdown"></select>
                     </div>
                     <div class="form-row">
-                        <label>รายละเอียด / บริการ</label>
-                        <textarea id="clinicDescInput" rows="2"></textarea>
+                        <label>รายละเอียด / บริการ / เวลาเปิด-ปิด</label>
+                        <textarea id="clinicDescInput" rows="3" placeholder="เช่น เปิด 09:00 - 20:00 น. รักษาโรคทั่วไป ทำหมัน ขูดหินปูน"></textarea>
                     </div>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
                         <span id="clinicMyRatingDisplay" style="font-weight: 600; color: #e67e22; font-size: 0.85rem;">⭐ 0.0 / 5.0 (0 รีวิว)</span>
@@ -1506,16 +1505,32 @@
                     </div>
                 </div>
 
+                <!-- ระบบซื้อแพ็คเกจโฆษณาคลินิก -->
+                <div class="action-card" style="border-top: 3px solid #f39c12;">
+                    <h3><i class="fas fa-ad"></i> ซื้อแพ็คเกจโฆษณาคลินิก</h3>
+                    <p style="font-size: 0.78rem; color: #636e72; margin-bottom: 10px;">โปรโมทคลินิกให้แสดงหน้าผู้ใช้งานบ่อยขึ้น หรือขึ้นอันดับแรกเมื่อมีการค้นหา</p>
+                    <div class="form-row">
+                        <label>เลือกแพ็คเกจโฆษณา</label>
+                        <select id="adPackageSelect">
+                            <option value="150">ราย 1 เดือน (150 ฿)</option>
+                            <option value="300">ราย 3 เดือน (300 ฿)</option>
+                            <option value="1000">รายปี (1,000 ฿)</option>
+                        </select>
+                    </div>
+                    <button class="btn-action" style="width: 100%; background: linear-gradient(135deg, #f39c12, #e67e22);" onclick="buyClinicAdPackage()">ชำระเงินค่าแพ็คเกจโฆษณา</button>
+                    <p id="adStatusText" style="font-size: 0.75rem; color: #27ae60; margin-top: 6px; font-weight: 600;"></p>
+                </div>
+
                 <div class="action-card">
-                    <h3><i class="fas fa-clipboard-check"></i> จัดการคิวรักษาจากผู้ใช้บริการ</h3>
+                    <h3><i class="fas fa-clipboard-check"></i> 2 & 4. จัดการคิวรักษา & ยืนยัน/ยกเลิก</h3>
                     <div id="clinicIncomingBookingsContainer" style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;"></div>
                 </div>
             </section>
         </main>
 
         <nav class="bottom-nav" id="mainBottomNav">
-            <button class="nav-item active" onclick="openTab(event, 'breeds')">
-                <i class="fas fa-paw"></i><span>สายพันธุ์สัตว์</span>
+            <button class="nav-item active" id="navTab1" onclick="openTab(event, 'breeds')">
+                <i class="fas fa-paw"></i><span id="navTab1Label">สายพันธุ์สัตว์</span>
             </button>
             <button class="nav-item" id="navMyCats" onclick="openTab(event, 'userCatContent')">
                 <i class="fas fa-heart"></i><span id="navMyCatsLabel">สัตว์เลี้ยงของฉัน</span>
@@ -1523,8 +1538,8 @@
             <button class="nav-item" id="navClinics" onclick="openTab(event, 'clinics')">
                 <i class="fas fa-hospital-user"></i><span>คลินิกใกล้ฉัน</span>
             </button>
-            <button class="nav-item" onclick="openTab(event, 'knowledge')">
-                <i class="fas fa-book-medical"></i><span>ความรู้ & อาการ</span>
+            <button class="nav-item" id="navTab4" onclick="openTab(event, 'knowledge')">
+                <i class="fas fa-book-medical"></i><span id="navTab4Label">ความรู้ & อาการ</span>
             </button>
         </nav>
     </div>
@@ -1578,7 +1593,7 @@
                 <input type="text" id="inputCatAge" placeholder="เช่น 1 ปี 2 เดือน">
             </div>
             <div class="form-row">
-                <label>ลิงก์รูปภาพประจำตัว (URL)</label>
+                <label>ลิงก์รูปภาพประจำตัว (URL) หรือรูปวงกลม</label>
                 <input type="text" id="inputCatImg" placeholder="วางลิงก์รูปภาพ หรือปล่อยว่าง">
             </div>
             <button class="btn-action" style="width: 100%; margin-top: 8px;" onclick="saveCatData()">บันทึกข้อมูลสัตว์เลี้ยง</button>
@@ -1594,18 +1609,18 @@
             <div id="modalClinicRatingDisplay" style="font-size: 0.82rem; font-weight: 600; color: #e67e22; margin-bottom: 10px;">⭐ 0.0 / 5.0 (0 รีวิว)</div>
 
             <div style="display: flex; gap: 8px; margin-bottom: 14px;">
-                <button class="btn-action" style="flex: 1; font-size: 0.78rem;" onclick="openChatWithClinic()"><i class="fas fa-comments"></i> แชทกับคลินิก</button>
+                <button class="btn-action" style="flex: 1; font-size: 0.78rem;" onclick="openChatWithClinic()"><i class="fas fa-comments"></i> แชทถามคลินิก</button>
             </div>
 
             <hr style="border: none; border-top: 1px solid #f1f2f6; margin: 10px 0;">
 
-            <h4 style="font-size: 0.88rem; margin-bottom: 8px; color: #2d3436; font-weight: 600;"><i class="fas fa-calendar-check"></i> จองคิวรักษา (ค่าบริการจอง 30 ฿)</h4>
+            <h4 style="font-size: 0.88rem; margin-bottom: 8px; color: #2d3436; font-weight: 600;"><i class="fas fa-calendar-check"></i> จองคิวรักษา (เสียค่าจอง 30 ฿ ต่อครั้ง)</h4>
             <div class="form-row">
-                <label>วันที่ต้องการเข้ารับบริการ</label>
+                <label>1. วันที่ต้องการเข้ารับบริการ</label>
                 <input type="date" id="bookingDate">
             </div>
             <div class="form-row">
-                <label>ชนิดสัตว์</label>
+                <label>2. ชนิดสัตว์</label>
                 <select id="bookingSpecies" style="padding: 10px 12px; border: 1.5px solid #dfe6e9; border-radius: 12px; font-family: 'Prompt',sans-serif; font-size: 0.82rem; width: 100%;">
                     <option value="แมว">แมว</option>
                     <option value="หมา">หมา</option>
@@ -1615,10 +1630,14 @@
                 </select>
             </div>
             <div class="form-row">
-                <label>อาการเบื้องต้น / รายละเอียดการรักษา</label>
+                <label>3. อาการเบื้องต้น</label>
                 <textarea id="bookingSymptoms" rows="2" placeholder="ระบุอาการป่วยหรือบริการที่ต้องการ"></textarea>
             </div>
-            <button class="btn-action" style="width: 100%; margin-top: 4px;" onclick="submitBooking()">ยืนยันการจองคิว</button>
+            <div class="form-row">
+                <label>จำนวนตัว (เพิ่มตัวในคลินิกเดียวกัน กรอกข้อมูลใหม่ เสียค่าจอง 30฿ ครั้งเดียว)</label>
+                <input type="number" id="bookingCount" value="1" min="1" max="10">
+            </div>
+            <button class="btn-action" style="width: 100%; margin-top: 4px;" onclick="submitBooking()">ยืนยันการจองคิว (ชำระค่าจอง 30฿)</button>
 
             <hr style="border: none; border-top: 1px solid #f1f2f6; margin: 14px 0 10px 0;">
 
@@ -1646,13 +1665,11 @@
                 <div class="close-btn" style="position: static; width: 28px; height: 28px; font-size: 0.85rem;" onclick="closeChatModal()"><i class="fas fa-times"></i></div>
             </div>
             <div id="chatMessages" style="flex: 1; overflow-y: auto; background: #f7f9fc; border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 0.78rem;">
-                <div style="background: white; padding: 8px 12px; border-radius: 10px; align-self: flex-start; border: 1px solid #f1f2f6; max-width: 80%;">
-                    สวัสดีค่ะ สอบถามข้อมูลการรักษาหรือนัดหมายคิวกับทางคลินิกได้เลยนะคะ 🐾
-                </div>
+                <div style="background: white; padding: 8px 12px; border-radius: 10px; align-self: flex-start; border: 1px solid #f1f2f6; max-width: 80%;">สวัสดีค่ะ สอบถามข้อมูลการรักษาหรือคิวว่างได้เลยนะคะ 🐾</div>
             </div>
             <div style="display: flex; gap: 6px; margin-top: 8px;">
-                <input type="text" id="chatInputMsg" placeholder="พิมพ์ข้อความ..." style="flex: 1; padding: 8px 12px; border: 1.5px solid #dfe6e9; border-radius: 10px; font-family: 'Prompt',sans-serif; font-size: 0.78rem; outline: none;" onkeypress="if(event.key==='Enter') sendChatMessage()">
-                <button class="btn-action" style="padding: 8px 14px;" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+                <input type="text" id="chatInputMessage" placeholder="พิมพ์ข้อความ..." style="flex: 1; padding: 8px 12px; border: 1.5px solid #dfe6e9; border-radius: 10px; font-family: 'Prompt',sans-serif; font-size: 0.78rem; outline: none;">
+                <button class="btn-action" style="padding: 8px 14px; font-size: 0.78rem;" onclick="sendChatMessage()">ส่ง</button>
             </div>
         </div>
     </div>
@@ -1660,210 +1677,39 @@
     <div id="articleModal" class="modal">
         <div class="modal-content">
             <div class="close-btn" onclick="closeArticleModal()"><i class="fas fa-times"></i></div>
-            <h3 id="modalArticleTitle">บทความ</h3>
+            <h3 id="modalArticleTitle">หัวข้อบทความ</h3>
             <p id="modalArticleBody" style="font-size: 0.82rem; color: #636e72; line-height: 1.5; margin-top: 10px;"></p>
         </div>
     </div>
 
     <script>
         const thaiProvinces = [
-            "กรุงเทพมหานคร", "กระบี่", "กาญจนบุรี", "กาฬสินธุ์", "กำแพงเพชร", "ขอนแก่น", "จันทบุรี", "ฉะเชิงเทรา", "ชลบุรี", "ชัยนาท", "ชัยภูมิ", "ชุมพร", "ตรัง", "ตราด", "ตาก", "นครนายก", "นครปฐม", "นครพนม", "นครราชสีมา", "นครศรีธรรมราช", "นครสวรรค์", "นนทบุรี", "นราธิวาส", "น่าน", "บึงกาฬ", "บุรีรัมย์", "ปทุมธานี", "ประจวบคีรีขันธ์", "ปราจีนบุรี", "ปัตตานี", "พระนครศรีอยุธยา", "พะเยา", "พังงา", "พัทลุง", "พิจิตร", "พิษณุโลก", "เพชรบุรี", "เพชรบูรณ์", "แพร่", "ภูเก็ต", "มหาสารคาม", "มุกดาหาร", "แม่ฮ่องสอน", "ยโสธร", "ยะลา", "ร้อยเอ็ด", "ระนอง", "ระยอง", "ราชบุรี", "ลพบุรี", "ลำปาง", "ลำพูน", "เลย", "ศรีสะเกษ", "สกลนคร", "สงขลา", "สตูล", "สมุทรปราการ", "สมุทรสงคราม", "สมุทรสาคร", "สระแก้ว", "สระบุรี", "สิงห์บุรี", "สุโขทัย", "สุพรรณบุรี", "สุราษฎร์ธานี", "สุรินทร์", "หนองคาย", "หนองบัวลำภู", "อ่างทอง", "อำนาจเจริญ", "อุดรธานี", "อุตรดิตถ์", "อุทัยธานี", "อุบลราชธานี"
+            "กรุงเทพมหานคร", "กระบี่", "กาญจนบุรี", "กาฬสินธุ์", "กำแพงเพชร", "ขอนแก่น", "จันทบุรี", "ฉะเชิงเทรา", "ชลบุรี", "ชัยนาท", "ชัยภูมิ", "ชุมพร", "ตรัง", "ตราด", "ตาก", "นครนายก", "นครปฐม", "นครพนม", "นครราชสีมา", "นครศรีธรรมราช", "นครสวรรค์", "นนทบุรี", "นราธิวาส", "น่าน", "บึงกาฬ", "บุรีรัมย์", "ปทุมธานี", "ประจวบคีรีขันธ์", "ปราจีนบุรี", "ปัตตานี", "พระนครศรีอยุธยา", "พะเยา", "พังงา", "พัทลุง", "พิจิตร", "พิษณุโลก", "เพชรบุรี", "เพชรบูรณ์", "แพร่", "ภูเก็ต", "มหาสารคาม", "มุกดาหาร", "ยะลา", "ยโสธร", "ร้อยเอ็ด", "ระนอง", "ระยอง", "ราชบุรี", "ลพบุรี", "ลำปาง", "ลำพูน", "เลย", "ศรีสะเกษ", "สกลนคร", "สงขลา", "สตูล", "สมุทรปราการ", "สมุทรสงคราม", "สมุทรสาคร", "สระแก้ว", "สระบุรี", "สิงห์บุรี", "สุโขทัย", "สุพรรณบุรี", "สุราษฎร์ธานี", "สุรินทร์", "หนองคาย", "หนองบัวลำภู", "อ่างทอง", "อำนาจเจริญ", "อุดรธานี", "อุตรดิตถ์", "อุทัยธานี", "อุบลราชธานี"
         ];
 
-        let authRole = 'user';
-        let authMode = 'login';
-        let currentUser = null;
-        let myCats = [
-            { id: 1, species: 'แมว', name: 'น้องส้ม', breed: 'เปอร์เซีย', age: '1 ปี', img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80' }
+        let currentAuthRole = 'user';
+        let currentAuthMode = 'login';
+        let currentUserEmail = null;
+        let selectedClinicForModal = null;
+
+        // Mock Database
+        let usersDB = JSON.parse(localStorage.getItem('petcare_usersDB')) || [];
+        let clinicsDB = JSON.parse(localStorage.getItem('petcare_clinicsDB')) || [
+            { id: 1, email: 'clinic1@test.com', name: 'Pet Care Center พิษณุโลก', province: 'พิษณุโลก', desc: 'เปิด 09:00-20:00 รักษาโรคทั่วไป ผ่าตัด ทำหมัน', rating: 4.8, reviewsCount: 12, adActive: true },
+            { id: 2, email: 'clinic2@test.com', name: 'Aksara Vet Clinic กรุงเทพ', province: 'กรุงเทพมหานคร', desc: 'เปิด 24 ชั่วโมง ฉุกเฉิน ศัลยกรรมกระดูก', rating: 4.9, reviewsCount: 25, adActive: false },
+            { id: 3, email: 'clinic3@test.com', name: 'รักสัตว์คลินิก เชียงใหม่', province: 'เชียงใหม่', desc: 'รักษาโรคสุนัข แมว สัตว์พิเศษ (Exotic)', rating: 4.7, reviewsCount: 8, adActive: false }
         ];
-        let vetSchedulesList = [];
-        let bookingsList = [];
-
-        let clinicsData = [
-            { id: 1, name: "โรงพยาบาลสัตว์เพ็ทคาเฟร์", province: "กรุงเทพมหานคร", desc: "เปิด 24 ชม. รักษาโรคทั่วไป ศัลยกรรม และสัตว์พิเศษ", email: "clinic1@pet.com", sponsored: true, ratings: [5, 4, 5] },
-            { id: 2, name: "คลินิกคนรักสัตว์เลี้ยง", province: "เชียงใหม่", desc: "เชี่ยวชาญการรักษาสัตว์เลี้ยงหลากหลายชนิด", email: "clinic2@pet.com", sponsored: false, ratings: [5, 5] },
-            { id: 3, name: "สุขุมวิทสัตวแพทย์", province: "กรุงเทพมหานคร", desc: "บริการอาบน้ำตัดขน ฝากเลี้ยง และรักษาโรค", email: "clinic3@pet.com", sponsored: false, ratings: [4, 3, 4] },
-            { id: 4, name: "รักสัตว์คลินิก", province: "ขอนแก่น", desc: "รักษาโรคทั่วไป ทำหมันฉีดวัคซีนราคาย่อมเยา", email: "clinic4@pet.com", sponsored: false, ratings: [5] }
+        let myPetsDB = JSON.parse(localStorage.getItem('petcare_myPetsDB')) || [
+            { id: 1, user: 'user@test.com', species: 'แมว', name: 'ส้มส้ม', breed: 'เปอร์เซีย', age: '1 ปี', img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80' }
         ];
+        let bookingsDB = JSON.parse(localStorage.getItem('petcare_bookingsDB')) || [];
+        let vetSchedulesDB = JSON.parse(localStorage.getItem('petcare_vetSchedulesDB')) || [];
 
-        let activeSelectedClinic = null;
-        let editingCatId = null;
+        window.addEventListener('DOMContentLoaded', () => {
+            initProvinceDropdowns();
+        });
 
-        const breedDetailsData = {
-            cat: {
-                persian: { title: "เปอร์เซีย (Persian)", char: "หน้าตาสั้น กลม ขนยาวหนานุ่ม", behavior: "เงียบสงบ รักความสงบ อ่อนโยน", care: "ต้องหมั่นหวีขนทุกวันเพื่อป้องกันขนพันกันและเกิดก้อนขนอุดตัน" },
-                scottish: { title: "สก็อตติช โฟลด์", char: "ใบหูพับหรือตั้ง หัวกลมตากลมโต", behavior: "เป็นมิตร ขี้เล่น ปรับตัวเก่ง", care: "ระวังเรื่องโรคข้อต่อและกระดูก หมั่นตรวจทำความสะอาดหู" },
-                thai: { title: "วิเชียรมาศ", char: "ตาสีฟ้า ตัวสีครีม แต้มจุดเข้ม 9 จุด", behavior: "ฉลาด รักเจ้าของ ช่างพูด", care: "เลี้ยงง่าย ขนสั้น ไม่ต้องการการดูแลพิเศษมาก" },
-                munchkin: { title: "มันช์กิน", char: "ขาสั้นเตี้ย ลำตัวยาวปานกลาง", behavior: "ซุกซน ขี้อ้อน กระโดดเก่งเกินคาด", care: "ระวังอุบัติเหตุจากการกระโดดจากที่สูงเพราะขาอาจได้รับบาดเจ็บ" },
-                bsh: { title: "บริติช ช็อตแฮร์", char: "ตัวแน่นกลม ขนสั้นหนานุ่มแน่น", behavior: "สุขุม นิ่งๆ รักสงบ ไม่ค่อยโวยวาย", care: "ระวังเรื่องโรคอ้วน ควบคุมปริมาณอาหาร" },
-                ragdoll: { title: "แรกดอลล์", char: "ตัวใหญ่ ตาฟ้า นิ่มนวลเหมือนตุ๊กตา", behavior: "เชื่องมากเมื่ออุ้มจะตัวอ่อนยวบ ติดคนสุดๆ", care: "หมั่นดูแลเรื่องการแปรงขนและระวังระบบทางเดินอาหาร" },
-                bengal: { title: "เบงกอล", char: "ลวดลายคล้ายเสือดาว กล้ามเนื้อชัดเจน", behavior: "แอคทีฟสูง รักการผจญภัย ชอบน้ำ", care: "ต้องการพื้นที่วิ่งเล่นและของเล่นระบายพลังงาน" },
-                sphynx: { title: "สฟิงซ์", char: "ไม่มีขน ผิวหนังย่นอบอุ่น", behavior: "ขี้อ้อนมาก ติดเจ้าของ รักความอบอุ่น", care: "ต้องเช็ดคราบเหงื่อและอาบน้ำเป็นประจำ ปกป้องผิวจากแดด" },
-                mainecoon: { title: "เมนคูน", char: "แมวพันธุ์ใหญ่ที่สุด ขนยาวหนา หางฟู", behavior: "เฟรนด์ลี่ รักครอบครัว เข้ากับเด็กได้ดี", care: "แปรงขนสัปดาห์ละหลายครั้ง ระวังเรื่องขนร่วง" },
-                american: { title: "อเมริกัน ช็อตแฮร์", char: "ลายสลิดชัดเจน ร่างกายกำยำแข็งแรง", behavior: "ร่าเริง แข็งแรง รักอิสระแต่ว่านอนสอนง่าย", care: "ดูแลความสะอาดง่าย เหมาะกับมือใหม่" },
-                russian: { title: "รัสเซียน บลู", char: "ขนสีเทาเงินประกาย ขนสองชั้น", behavior: "ขี้อายเล็กน้อย ฉลาด รักสงบ", care: "ชอบความเงียบสงบ อาหารการกินไม่ยุ่งยาก" },
-                exotic: { title: "เอ็กโซติก ช็อตแฮร์", char: "หน้าตุ๊กตาเปอร์เซียแต่ขนสั้นหนา", behavior: "ขี้อ้อน รักสงบ ติดเจ้าของ", care: "ระวังเรื่องน้ำตาไหลและคราบรอบดวงตา" },
-                abyssinian: { title: "อบิสซิเนียน", char: "รูปร่างเพรียว นักกีฬา ขนสีสลับเฉด", behavior: "ฉลาดหลักแหลม ซุกซน ตื่นตัวตลอดเวลา", care: "ต้องการการเอาใจใส่และกิจกรรมกระตุ้นสมอง" }
-            },
-            dog: {
-                golden: { title: "โกลเด้น รีทรีฟเวอร์", char: "ขนยาวสีทอง ร่างกายสมส่วนแข็งแรง", behavior: "เป็นมิตรสูงมาก ฉลาด ฝึกง่าย รักเด็ก", care: "ชอบวิ่งออกกำลังกาย ต้องแปรงขนและเช็ดหูเป็นประจำ" },
-                poodle: { title: "พุดเดิ้ล", char: "ขนหยิกฟู สมองปราดเปรื่อง", behavior: "ฉลาดเป็นกรด ฝึกง่าย ขี้เล่น", care: "ต้องตัดแต่งขนสม่ำเสมอเพื่อป้องกันขนพันกัน" },
-                chihuahua: { title: "ชิวาวา", char: "ตัวจิ๋ว ตาโต หัวกลมทรงแอปเปิ้ล", behavior: "กล้าหาญเกินตัว ติดเจ้าของ หวงถิ่น", care: "ระวังอากาศหนาวและอุบัติเหตุจากการเหยียบย่าง" },
-                pomeranian: { title: "ปอมเมอเรเนียน", char: "ตัวเล็ก ขนฟูหนาหางม้วนขึ้นหลัง", behavior: "ตื่นตัว ร่าเริง รักสนุก เห่าเก่ง", care: "ต้องหวีขนกันสมานและระวังโรคหลอดลมตีบ" },
-                shihtzu: { title: "ชิสุ", char: "หน้าสั้น ขนยาวสลวย ดั้งหัก", behavior: "อ่อนโยน รักสงบ เป็นมิตรกับทุกคน", care: "เช็ดทำความสะอาดรอบตาและจมูกเพื่อป้องกันคราบน้ำตา" },
-                husky: { title: "ไซบีเรียน ฮัสกี้", char: "หน้าคล้ายหมาป่า ตาสีฟ้าหรือน้ำตาล", behavior: "พลังงานสูงมาก รักอิสระ เป็นมิตรกับคนแปลกหน้า", care: "ต้องการพื้นที่กว้างและออกกำลังกายอย่างหนักหน่วง" },
-                corgi: { title: "เวลช์ คอร์กี้", char: "ขาสั้นเตี้ย ลำตัวยาว ก้นฟู", behavior: "ฉลาด ตื่นตัว เฟรนด์ลี่", care: "ระวังเรื่องน้ำหนักตัวและปัญหาหลัง" }
-            },
-            bird: {
-                budgie: { title: "นกหงส์หยก", char: "ตัวเล็ก ลายสลิดชัดเจน มีหลายสี", behavior: "ร่าเริง เลียนแบบเสียงได้", care: "ง่าย ทำความสะอาดกรงสม่ำเสมอ" },
-                cockatiel: { title: "ค็อกกาเทิล", char: "มีหงอนบนหัวแก้มส้ม", behavior: "เชื่อง ขี้อ้อน ชอบเกาะไหล่", care: "ปานกลาง ต้องการสังคม" },
-                lovebird: { title: "เลิฟเบิร์ด", char: "ตัวป้อม หางสั้น สีสันสดใส", behavior: "รักเดียวใจเดียว แอคทีฟ", care: "ควรเลี้ยงเป็นคู่" },
-                sunconure: { title: "ซันคอนัวร์", char: "สีส้มเหลืองสดใสสะดุดตา", behavior: "ขี้เล่น ติดเจ้าของ", care: "ต้องการเวลา เสียงดังปานกลาง" },
-                canary: { title: "นกคีรีบูน", char: "ตัวเพรียว สีเหลืองทอง", behavior: "รักสงบ เสียงร้องไพเราะ", care: "ง่าย ชอบความเป็นส่วนตัว" },
-                finch: { title: "นกฟินช์เจ็ดสี", char: "สีสันหลากสีบนตัวสวยงาม", behavior: "อยู่ร่วมกันเป็นฝูง ร่าเริง", care: "อ่อนไหวต่ออากาศหนาว" },
-                mynah: { title: "นกขุนทอง", char: "ขนสีดำสนิท ปากเหลือง", behavior: "ฉลาด เลียนเสียงคนได้ดี", care: "ขับถ่ายเหลวต้องหมั่นทำความสะอาด" },
-                africangrey: { title: "นกแก้วแอฟริกันเกรย์", char: "สีเทาหางแดง ฉลาดล้ำ", behavior: "ความจำดีเทียบเท่าเด็ก 5 ขวบ", care: "ต้องการความใส่ใจสูง" },
-                dove: { title: "นกเขาชวา", char: "ตัวเล็ก เสียงขันไพเราะ", behavior: "เชื่อง สงบ", care: "ง่าย แข็งแรงทนทาน" },
-                cockatoo: { title: "นกค็อกทู", char: "หัวหงอนใหญ่ ขาวฟู", behavior: "ติดเจ้าของ ขี้เล่น", care: "ปากแข็งแรง ต้องมีของเล่นให้แทะ" }
-            },
-            fish: {
-                betta: { title: "ปลากัด", char: "ครีบยาวพริ้วไหวสีสันสวยงาม", behavior: "รักสงบ (ตัวผู้ห้ามเลี้ยงรวม)", care: "เปลี่ยนน้ำสัปดาห์ละครั้ง" },
-                guppy: { title: "ปลาหางนกยูง", char: "หางแผ่กว้างลวดลายสวย", behavior: "ร่าเริง ว่ายเป็นฝูง", care: "ง่าย ออกลูกง่าย" },
-                goldfish: { title: "ปลาทอง", char: "ตัวกลม ครีบยาว", behavior: "เชื่อง กินเก่ง", care: "ระบบกรองน้ำต้องดี" },
-                koi: { title: "ปลาคาร์ฟ", char: "ขนาดใหญ่ ลวดลายแต้มสี", behavior: "เชื่องมาก เป็นมิตร", care: "ต้องการบ่อขนาดใหญ่" },
-                discus: { title: "ปลาปอมปาดัวร์", char: "ทรงกลมแบนเหมือนจาน", behavior: "ว่ายน้ำนุ่มนวล", care: "ค่าน้ำต้องสะอาดและนิ่งมาก" },
-                arowana: { title: "ปลาอะโรวาน่า", char: "เกล็ดใหญ่ทรงมังกร", behavior: "ว่ายสง่างาม หวงถิ่น", care: "ตู้ต้องมีฝาปิดกันกระโดด" },
-                flowerhorn: { title: "ปลาหมอสี", char: "หัวโหนกเด่นชัด", behavior: "ดุ หวงพื้นที่", care: "นิยมเลี้ยงเดี่ยว" },
-                angelfish: { title: "ปลาเทวดา", char: "ครีบยาวสูงสง่า", behavior: "ค่อนข้างรักสงบ", care: "ชอบน้ำสะอาด" },
-                tigerbarb: { title: "ปลาเสือสุมาตรา", char: "ลายเสือคาดดำส้ม", behavior: "แอคทีฟ ชอบตอดครีบ", care: "ควรเลี้ยงเป็นฝูง" },
-                corydoras: { title: "ปลาแพะ", char: "หนวดสั้นหากินก้นตู้", behavior: "เรียบร้อย รักสงบ", care: "ช่วยกินเศษอาหารก้นตู้" },
-                swordtail: { title: "ปลาหางดาบ", char: "หางล่างยื่นยาวเหมือนดาบ", behavior: "ว่องไว แข็งแรง", care: "เหมาะสำหรับมือใหม่" }
-            },
-            rabbit: {
-                netherland: { title: "เนเธอร์แลนด์ ดวอฟ", char: "หูสั้นตั้ง ตัวจิ๋ว", behavior: "ฉลาด คล่องแคล่ว", care: "กินหญ้าแห้งเป็นหลัก" },
-                holland: { title: "ฮอลแลนด์ ลอป", char: "หูตก ตัวกลม", behavior: "เชื่องมาก เป็นมิตร", care: "หวีขนสม่ำเสมอ" }
-            }
-        };
-
-        function setAuthRole(role) {
-            authRole = role;
-            document.getElementById('roleUserBtn').classList.toggle('active', role === 'user');
-            document.getElementById('roleClinicBtn').classList.toggle('active', role === 'clinic');
-            
-            if (role === 'clinic') {
-                document.getElementById('authSubtitle').innerText = 'ระบบจัดการสำหรับคลินิกสัตว์และสัตวแพทย์';
-                document.getElementById('nameFieldGroup').style.display = 'none';
-                document.getElementById('clinicProvinceFieldGroup').style.display = 'block';
-                document.getElementById('clinicDescFieldGroup').style.display = 'block';
-                document.getElementById('authName').removeAttribute('required');
-            } else {
-                document.getElementById('authSubtitle').innerText = 'แอปพลิเคชันคู่หูคนรักสัตว์เลี้ยงและบริการคลินิกครบวงจร';
-                document.getElementById('nameFieldGroup').style.display = 'block';
-                document.getElementById('clinicProvinceFieldGroup').style.display = 'none';
-                document.getElementById('clinicDescFieldGroup').style.display = 'none';
-                document.getElementById('authName').setAttribute('required', 'true');
-            }
-        }
-
-        function switchAuthMode(mode) {
-            authMode = mode;
-            document.getElementById('tabLoginBtn').classList.toggle('active', mode === 'login');
-            document.getElementById('tabRegBtn').classList.toggle('active', mode === 'register');
-            document.getElementById('authTabsContainer').classList.toggle('register-mode', mode === 'register');
-            
-            const regFields = document.getElementById('registerFields');
-            const submitBtn = document.getElementById('authSubmitBtn');
-            
-            if (mode === 'register') {
-                regFields.style.display = 'block';
-                submitBtn.innerText = 'สมัครสมาชิก';
-            } else {
-                regFields.style.display = 'none';
-                submitBtn.innerText = 'เข้าสู่ระบบ';
-            }
-        }
-
-        function toggleAuthModeText() {
-            if (authMode === 'login') {
-                switchAuthMode('register');
-            } else {
-                switchAuthMode('login');
-            }
-        }
-
-        function handleAuthSubmit(e) {
-            e.preventDefault();
-            const email = document.getElementById('authEmail').value;
-            const pass = document.getElementById('authPassword').value;
-
-            if (authRole === 'user') {
-                const name = document.getElementById('authName').value || 'ผู้ใช้งาน';
-                currentUser = { role: 'user', name, email };
-                document.getElementById('headerTitle').innerText = `สวัสดี, ${name} 🐾`;
-                document.getElementById('headerSubtitle').innerText = 'เจ้าของสัตว์เลี้ยง';
-                document.getElementById('headerIcon').className = 'fas fa-user-heart';
-                
-                document.getElementById('navMyCats').style.display = 'flex';
-                document.getElementById('navClinics').style.display = 'flex';
-                document.getElementById('clinicDashboardContent').style.display = 'none';
-            } else {
-                const province = document.getElementById('authClinicProvince').value;
-                const desc = document.getElementById('authClinicDesc').value || 'คลินิกสัตว์มาตรฐาน';
-                currentUser = { role: 'clinic', name: email.split('@')[0], email, province, desc };
-                
-                document.getElementById('headerTitle').innerText = `คลินิก: ${currentUser.name}`;
-                document.getElementById('headerSubtitle').innerText = `จังหวัด: ${province}`;
-                document.getElementById('headerIcon').className = 'fas fa-hospital';
-                
-                document.getElementById('navMyCats').style.display = 'none';
-                document.getElementById('navClinics').style.display = 'none';
-                
-                document.getElementById('clinicNameInput').value = currentUser.name;
-                document.getElementById('clinicProvinceInput').value = province;
-                document.getElementById('clinicDescInput').value = desc;
-
-                openTab({currentTarget: {classList: {}}}, 'clinicDashboardContent');
-            }
-
-            document.getElementById('authScreen').style.display = 'none';
-            renderMyCats();
-            renderClinics();
-            populateDropdowns();
-        }
-
-        function logout() {
-            currentUser = null;
-            document.getElementById('authScreen').style.display = 'flex';
-            document.getElementById('authEmail').value = '';
-            document.getElementById('authPassword').value = '';
-        }
-
-        function openTab(evt, tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(c => c.classList.remove('active'));
-
-            const navItems = document.querySelectorAll('.bottom-nav .nav-item');
-            navItems.forEach(n => n.classList.remove('active'));
-
-            document.getElementById(tabId).classList.add('active');
-            if (evt && evt.currentTarget && evt.currentTarget.classList) {
-                evt.currentTarget.classList.add('active');
-            }
-        }
-
-        function switchSpeciesTab(species, event) {
-            const pills = document.querySelectorAll('.species-tab-pill');
-            pills.forEach(p => p.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-
-            const sections = document.querySelectorAll('.species-breed-section');
-            sections.forEach(s => s.style.display = 'none');
-
-            const target = document.getElementById(`breedSection-${species}`);
-            if (target) target.style.display = 'block';
-        }
-
-        function populateDropdowns() {
+        function initProvinceDropdowns() {
             const dropdowns = document.querySelectorAll('.thai-provinces-dropdown');
             dropdowns.forEach(dd => {
                 dd.innerHTML = '';
@@ -1874,213 +1720,340 @@
                     dd.appendChild(opt);
                 });
             });
+        }
 
-            const filterDD = document.getElementById('clinicProvinceFilter');
-            if (filterDD) {
-                filterDD.innerHTML = '<option value="">ทุกจังหวัด</option>';
-                thaiProvinces.forEach(prov => {
-                    const opt = document.createElement('option');
-                    opt.value = prov;
-                    opt.textContent = prov;
-                    filterDD.appendChild(opt);
-                });
+        function setAuthRole(role) {
+            currentAuthRole = role;
+            document.getElementById('roleUserBtn').classList.toggle('active', role === 'user');
+            document.getElementById('roleClinicBtn').classList.toggle('active', role === 'clinic');
+            
+            if(role === 'clinic') {
+                document.getElementById('nameFieldGroup').style.display = 'none';
+                document.getElementById('clinicProvinceFieldGroup').style.display = 'block';
+                document.getElementById('clinicDescFieldGroup').style.display = 'block';
+                document.getElementById('authSubtitle').textContent = 'ระบบจัดการสำหรับคลินิกสัตว์ สมัครและลงประกาศได้ทันที';
+            } else {
+                document.getElementById('nameFieldGroup').style.display = 'block';
+                document.getElementById('clinicProvinceFieldGroup').style.display = 'none';
+                document.getElementById('clinicDescFieldGroup').style.display = 'none';
+                document.getElementById('authSubtitle').textContent = 'สวัสดี, ผู้ใช้งาน 🐾 เจ้าของสัตว์เลี้ยง เอาอวตาร/รูปกลับมาด้วยตรงวงกลม';
             }
         }
 
-        function renderMyCats() {
-            const container = document.getElementById('myCatsGridContainer');
-            const select = document.getElementById('scheduleCatSelect');
-            if (!container || !select) return;
-
-            container.innerHTML = '';
-            select.innerHTML = '';
-
-            myCats.forEach(cat => {
-                const card = document.createElement('div');
-                card.className = 'my-pet-card';
-                card.innerHTML = `
-                    <div class="my-pet-avatar" style="background-image: url('${cat.img || 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80'}')"></div>
-                    <h4>${cat.name}</h4>
-                    <p>${cat.species} • ${cat.breed}</p>
-                    <p style="font-size: 0.65rem; color: #b2bec3;">อายุ: ${cat.age}</p>
-                    <div class="my-pet-actions">
-                        <button class="btn-edit-pet" onclick="openEditCatModal(${cat.id})">แก้ไข</button>
-                        <button class="btn-delete-pet" onclick="deleteCat(${cat.id})">ลบ</button>
-                    </div>
-                `;
-                container.appendChild(card);
-
-                const opt = document.createElement('option');
-                opt.value = cat.name;
-                opt.textContent = `${cat.name} (${cat.species})`;
-                select.appendChild(opt);
-            });
+        function switchAuthMode(mode) {
+            currentAuthMode = mode;
+            const tabsContainer = document.getElementById('authTabsContainer');
+            document.getElementById('tabLoginBtn').classList.toggle('active', mode === 'login');
+            document.getElementById('tabRegBtn').classList.toggle('active', mode === 'register');
+            
+            if(mode === 'register') {
+                tabsContainer.classList.add('register-mode');
+                document.getElementById('registerFields').style.display = 'block';
+                document.getElementById('authSubmitBtn').textContent = 'สมัครสมาชิก';
+                document.getElementById('switchTextPrompt').textContent = 'มีบัญชีอยู่แล้ว? เข้าสู่ระบบ';
+            } else {
+                tabsContainer.classList.remove('register-mode');
+                document.getElementById('registerFields').style.display = 'none';
+                document.getElementById('authSubmitBtn').textContent = 'เข้าสู่ระบบ';
+                document.getElementById('switchTextPrompt').textContent = 'ยังไม่มีบัญชีใช่ไหม? สมัครสมาชิก';
+            }
         }
 
+        function toggleAuthModeText() {
+            switchAuthMode(currentAuthMode === 'login' ? 'register' : 'login');
+        }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value.trim();
+            const pass = document.getElementById('authPassword').value.trim();
+
+            if(currentAuthMode === 'register') {
+                if(currentAuthRole === 'clinic') {
+                    const province = document.getElementById('authClinicProvince').value;
+                    const desc = document.getElementById('authClinicDesc').value || 'คลินิกสัตว์มาตรฐาน';
+                    const name = email.split('@')[0] + ' คลินิก';
+                    
+                    const existing = clinicsDB.find(c => c.email === email);
+                    if(existing) {
+                        alert('อีเมลนี้ถูกใช้งานเป็นคลินิกแล้ว');
+                        return;
+                    }
+                    const newClinic = { id: Date.now(), email, name, province, desc, rating: 5.0, reviewsCount: 1, adActive: false };
+                    clinicsDB.push(newClinic);
+                    localStorage.setItem('petcare_clinicsDB', JSON.stringify(clinicsDB));
+                    alert('สมัครบัญชีคลินิกสำเร็จ!');
+                } else {
+                    const name = document.getElementById('authName').value || 'ผู้ใช้งาน';
+                    const existing = usersDB.find(u => u.email === email);
+                    if(existing) {
+                        alert('อีเมลนี้ถูกลงทะเบียนไว้แล้ว');
+                        return;
+                    }
+                    usersDB.push({ email, pass, name, role: 'user' });
+                    localStorage.setItem('petcare_usersDB', JSON.stringify(usersDB));
+                    alert('สมัครสมาชิกสำเร็จ!');
+                }
+                switchAuthMode('login');
+            } else {
+                // Login
+                if(currentAuthRole === 'clinic') {
+                    const clinic = clinicsDB.find(c => c.email === email);
+                    if(clinic) {
+                        currentUserEmail = email;
+                        enterAppAsClinic(clinic);
+                    } else {
+                        alert('ไม่พบบัญชีคลินิกนี้ กรุณาสมัครสมาชิก');
+                    }
+                } else {
+                    currentUserEmail = email;
+                    enterAppAsUser(email);
+                }
+            }
+        }
+
+        function enterAppAsUser(email) {
+            document.getElementById('authScreen').style.display = 'none';
+            // ปรับ UI เป็นโหมดผู้ใช้งาน (แสดงแท็บ 1,2,3,4 ปกติ)
+            document.getElementById('navMyCats').style.display = 'flex';
+            document.getElementById('navTab1').style.display = 'flex';
+            document.getElementById('navTab4').style.display = 'flex';
+            document.getElementById('navTab1Label').textContent = 'สายพันธุ์สัตว์';
+            document.getElementById('navTab4Label').textContent = 'ความรู้ & อาการ';
+            
+            // ซ่อนแดชบอร์ดคลินิก ถ้าเคยเปิดค้างไว้
+            document.getElementById('clinicDashboardContent').style.display = 'none';
+            openTab(null, 'breeds');
+            renderMyPets();
+            renderUserBookings();
+            renderVetSchedules();
+            renderClinicsList();
+        }
+
+        function enterAppAsClinic(clinic) {
+            document.getElementById('authScreen').style.display = 'none';
+            // ปรับ UI เป็นโหมดคลินิก (ตามฟังก์ชัน: 1.หน้าข้อมูลคลินิก, 2.หน้าแสดงการกดจอง/แชท, 3.ไม่ต้องมีสายพันธุ์/สัตว์เลี้ยงฉัน/ความรู้, 4.ยกเลิก/ยืนยัน)
+            document.getElementById('navMyCats').style.display = 'none';
+            document.getElementById('navTab1').style.display = 'none';
+            document.getElementById('navTab4').style.display = 'none';
+            
+            // เติมข้อมูลในหน้าแดชบอร์ดคลินิก
+            document.getElementById('clinicNameInput').value = clinic.name;
+            document.getElementById('clinicProvinceInput').value = clinic.province;
+            document.getElementById('clinicDescInput').value = clinic.desc;
+            document.getElementById('clinicMyRatingDisplay.textContent') = `⭐ ${clinic.rating} / 5.0 (${clinic.reviewsCount} รีวิว)`;
+            document.getElementById('adStatusText').textContent = clinic.adActive ? 'สถานะโฆษณา: เปิดใช้งานอยู่ (แสดงอันดับแรก)' : 'สถานะโฆษณา: ยังไม่ได้เปิดใช้งาน';
+
+            openTab(null, 'clinicDashboardContent');
+            renderClinicIncomingBookings(clinic.email);
+        }
+
+        function logout() {
+            currentUserEmail = null;
+            document.getElementById('authScreen').style.display = 'flex';
+        }
+
+        function openTab(evt, tabId) {
+            const contents = document.querySelectorAll('.app-content .tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+            
+            const target = document.getElementById(tabId);
+            if(target) target.classList.add('active');
+
+            if(evt && evt.currentTarget) {
+                const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+                navItems.forEach(n => n.classList.remove('active'));
+                evt.currentTarget.classList.add('active');
+            }
+        }
+
+        // สายพันธุ์สัตว์ Tab
+        function switchSpeciesTab(species, e) {
+            document.querySelectorAll('.species-tab-pill').forEach(p => p.classList.remove('active'));
+            if(e && e.currentTarget) e.currentTarget.classList.add('active');
+
+            document.querySelectorAll('.species-breed-section').forEach(s => s.style.display = 'none');
+            const targetSec = document.getElementById(`breedSection-${species}`);
+            if(targetSec) targetSec.style.display = 'block';
+        }
+
+        function showBreedDetail(species, breedKey) {
+            const modal = document.getElementById('breedDetailModal');
+            document.getElementById('modalBreedTitle').textContent = `ข้อมูลสายพันธุ์ (${species.toUpperCase()})`;
+            document.getElementById('modalBreedChar').textContent = 'ลักษณะเด่นทางกายภาพ โครงสร้าง รูปร่าง และสีขนที่เป็นเอกลักษณ์เฉพาะตัว';
+            document.getElementById('modalBreedBehavior').textContent = 'อุปนิสัยทั่วไป ความเป็นมิตร ระดับพลังงาน และการเข้ากับสมาชิกในบ้าน';
+            document.getElementById('modalBreedCare').textContent = 'คำแนะนำการเลี้ยงดู การให้อาหาร การแปรงขน และข้อควรระวังด้านสุขภาพจากสัตวแพทย์';
+            modal.style.display = 'flex';
+        }
+
+        function closeBreedModal() {
+            document.getElementById('breedDetailModal').style.display = 'none';
+        }
+
+        // สัตว์เลี้ยงของฉัน & นัดหมาย
         function openAddCatModal() {
-            editingCatId = null;
-            document.getElementById('catModalTitle').innerText = 'เพิ่มข้อมูลสัตว์เลี้ยง';
-            document.getElementById('inputPetSpecies').value = 'แมว';
-            document.getElementById('inputCatName').value = '';
-            document.getElementById('inputCatBreed').value = '';
-            document.getElementById('inputCatAge').value = '';
-            document.getElementById('inputCatImg').value = '';
             document.getElementById('catModal').style.display = 'flex';
         }
-
-        function openEditCatModal(id) {
-            editingCatId = id;
-            const cat = myCats.find(c => c.id === id);
-            if (!cat) return;
-
-            document.getElementById('catModalTitle').innerText = 'แก้ไขข้อมูลสัตว์เลี้ยง';
-            document.getElementById('inputPetSpecies').value = cat.species;
-            document.getElementById('inputCatName').value = cat.name;
-            document.getElementById('inputCatBreed').value = cat.breed;
-            document.getElementById('inputCatAge').value = cat.age;
-            document.getElementById('inputCatImg').value = cat.img;
-            document.getElementById('catModal').style.display = 'flex';
-        }
-
         function closeCatModal() {
             document.getElementById('catModal').style.display = 'none';
         }
 
         function saveCatData() {
             const species = document.getElementById('inputPetSpecies').value;
-            const name = document.getElementById('inputCatName').value;
-            const breed = document.getElementById('inputCatBreed').value;
-            const age = document.getElementById('inputCatAge').value;
-            const img = document.getElementById('inputCatImg').value;
+            const name = document.getElementById('inputCatName').value.trim();
+            const breed = document.getElementById('inputCatBreed').value.trim();
+            const age = document.getElementById('inputCatAge').value.trim();
+            let img = document.getElementById('inputCatImg').value.trim();
 
-            if (!name) {
-                alert('กรุณาระบุชื่อสัตว์เลี้ยง');
+            if(!name) {
+                alert('กรุณากรอกชื่อสัตว์เลี้ยง');
+                return;
+            }
+            if(!img) {
+                img = 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&q=80';
+            }
+
+            myPetsDB.push({ id: Date.now(), user: currentUserEmail || 'user@test.com', species, name, breed, age, img });
+            localStorage.setItem('petcare_myPetsDB', JSON.stringify(myPetsDB));
+            closeCatModal();
+            renderMyPets();
+        }
+
+        function renderMyPets() {
+            const container = document.getElementById('myCatsGridContainer');
+            const scheduleSelect = document.getElementById('scheduleCatSelect');
+            container.innerHTML = '';
+            scheduleSelect.innerHTML = '';
+
+            const myPets = myPetsDB.filter(p => p.user === (currentUserEmail || 'user@test.com'));
+            if(myPets.length === 0) {
+                container.innerHTML = '<p style="font-size:0.78rem; color:#b2bec3; grid-column:span 2;">ยังไม่มีสัตว์เลี้ยงในระบบ</p>';
                 return;
             }
 
-            if (editingCatId) {
-                const cat = myCats.find(c => c.id === editingCatId);
-                if (cat) {
-                    cat.species = species;
-                    cat.name = name;
-                    cat.breed = breed;
-                    cat.age = age;
-                    if (img) cat.img = img;
-                }
-            } else {
-                const newId = myCats.length > 0 ? Math.max(...myCats.map(c => c.id)) + 1 : 1;
-                myCats.push({
-                    id: newId,
-                    species,
-                    name,
-                    breed: breed || 'ทั่วไป',
-                    age: age || 'ไม่ระบุ',
-                    img: img || 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80'
-                });
-            }
+            myPets.forEach(pet => {
+                const card = document.createElement('div');
+                card.className = 'my-pet-card';
+                card.innerHTML = `
+                    <div class="my-pet-avatar" style="background-image: url('${pet.img}')"></div>
+                    <h4>${pet.name}</h4>
+                    <p>${pet.species} | ${pet.breed || 'ทั่วไป'}</p>
+                    <div class="my-pet-actions">
+                        <button class="btn-delete-pet" onclick="deletePet(${pet.id})">ลบ</button>
+                    </div>
+                `;
+                container.appendChild(card);
 
-            closeCatModal();
-            renderMyCats();
+                const opt = document.createElement('option');
+                opt.value = pet.name;
+                opt.textContent = `${pet.name} (${pet.species})`;
+                scheduleSelect.appendChild(opt);
+            });
         }
 
-        function deleteCat(id) {
-            if (confirm('คุณต้องการลบข้อมูลสัตว์เลี้ยงนี้ใช่หรือไม่?')) {
-                myCats = myCats.filter(c => c.id !== id);
-                renderMyCats();
-            }
+        function deletePet(id) {
+            myPetsDB = myPetsDB.filter(p => p.id !== id);
+            localStorage.setItem('petcare_myPetsDB', JSON.stringify(myPetsDB));
+            renderMyPets();
         }
 
         function saveVetSchedule() {
             const catName = document.getElementById('scheduleCatSelect').value;
             const date = document.getElementById('scheduleDate').value;
-            const reason = document.getElementById('scheduleReason').value;
+            const reason = document.getElementById('scheduleReason').value.trim();
 
-            if (!date || !reason) {
-                alert('กรุณาระบุวันที่และอาการ/เหตุผล');
+            if(!catName || !date || !reason) {
+                alert('กรุณากรอกข้อมูลนัดหมายให้ครบถ้วน');
                 return;
             }
 
-            vetSchedulesList.push({ id: Date.now(), catName, date, reason, completed: false });
-            document.getElementById('scheduleDate').value = '';
-            document.getElementById('scheduleReason').value = '';
-
-            document.getElementById('reminderBox').style.display = 'block';
-            document.getElementById('reminderText').innerText = `นัดหมาย: ${catName} วันที่ ${date} (${reason}) - ตั้งเตือนสำเร็จ!`;
-
+            vetSchedulesDB.push({ id: Date.now(), user: currentUserEmail || 'user@test.com', catName, date, reason, completed: false });
+            localStorage.setItem('petcare_vetSchedulesDB', JSON.stringify(vetSchedulesDB));
             renderVetSchedules();
         }
 
         function renderVetSchedules() {
             const container = document.getElementById('vetSchedulesContainer');
-            if (!container) return;
-
             container.innerHTML = '';
-            if (vetSchedulesList.length === 0) {
-                container.innerHTML = '<p style="font-size: 0.75rem; color: #b2bec3;">ยังไม่มีรายการนัดหมาย</p>';
+            const schedules = vetSchedulesDB.filter(s => s.user === (currentUserEmail || 'user@test.com'));
+            
+            if(schedules.length === 0) {
+                container.innerHTML = '<p style="font-size:0.75rem; color:#b2bec3;">ยังไม่มีตารางนัดหมาย</p>';
                 return;
             }
 
-            vetSchedulesList.forEach(sch => {
-                const div = document.createElement('div');
-                div.style.cssText = `background: ${sch.completed ? '#e8f8f5' : '#fdedec'}; border: 1px solid ${sch.completed ? '#2ecc71' : '#e74c3c'}; padding: 10px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem;`;
-                div.innerHTML = `
+            schedules.forEach(sch => {
+                const item = document.createElement('div');
+                item.style.cssText = `background: ${sch.completed ? '#e8f8f5' : '#fdf2e9'}; border-left: 4px solid ${sch.completed ? '#27ae60' : '#e74c3c'}; padding: 10px; border-radius: 8px; font-size: 0.78rem; display: flex; justify-content: space-between; align-items: center;`;
+                item.innerHTML = `
                     <div>
-                        <strong>${sch.catName}</strong> (${sch.date})<br>
-                        <span style="color: #636e72;">${sch.reason}</span>
+                        <strong>${sch.catName}</strong> - ${sch.reason} <br>
+                        <span style="color:#636e72; font-size:0.72rem;">📅 นัดวันที่: ${sch.date}</span>
                     </div>
-                    <div>
-                        <button class="btn-action" style="padding: 4px 8px; font-size: 0.68rem; background: ${sch.completed ? '#2ecc71' : '#e74c3c'};" onclick="toggleScheduleStatus(${sch.id})">
-                            ${sch.completed ? 'พบหมอแล้ว' : 'ยังไม่พบหมอ'}
-                        </button>
-                    </div>
+                    <button class="btn-action" style="padding: 4px 8px; font-size: 0.68rem; background:${sch.completed ? '#27ae60' : '#e67e22'}" onclick="toggleVetSchedule(${sch.id})">
+                        ${sch.completed ? 'พบหมอแล้ว' : 'ยังไม่พบหมอ'}
+                    </button>
                 `;
-                container.appendChild(div);
+                container.appendChild(item);
             });
         }
 
-        function toggleScheduleStatus(id) {
-            const sch = vetSchedulesList.find(s => s.id === id);
-            if (sch) {
+        function toggleVetSchedule(id) {
+            const sch = vetSchedulesDB.find(s => s.id === id);
+            if(sch) {
                 sch.completed = !sch.completed;
+                localStorage.setItem('petcare_vetSchedulesDB', JSON.stringify(vetSchedulesDB));
                 renderVetSchedules();
             }
         }
 
-        function renderClinics() {
+        // คลินิกใกล้ฉัน & จองคิว & เสียค่าจอง 30฿
+        function renderClinicsList() {
             const container = document.getElementById('clinicsListContainer');
-            if (!container) return;
-
-            const searchKey = document.getElementById('clinicSearchInput').value.toLowerCase();
             const provFilter = document.getElementById('clinicProvinceFilter').value;
-
-            container.innerHTML = '';
-            const filtered = clinicsData.filter(cl => {
-                const matchName = cl.name.toLowerCase().includes(searchKey);
-                const matchProv = !provFilter || cl.province === provFilter;
-                return matchName && matchProv;
+            const searchInput = document.getElementById('clinicSearchInput').value.toLowerCase();
+            
+            provFilter.innerHTML = '<option value="">ทุกจังหวัด</option>';
+            thaiProvinces.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p;
+                opt.textContent = p;
+                if(p === provFilter) opt.selected = true;
             });
 
-            if (filtered.length === 0) {
-                container.innerHTML = '<p style="font-size: 0.82rem; color: #b2bec3; text-align: center; padding: 20px;">ไม่พบคลินิกที่ค้นหา</p>';
+            container.innerHTML = '';
+            // จัดเรียงคลินิก: ถ้ามี adActive ให้ขึ้นอันดับแรก
+            let sortedClinics = [...clinicsDB].sort((a,b) => (b.adActive ? 1 : 0) - (a.adActive ? 1 : 0));
+
+            const filtered = sortedClinics.filter(c => {
+                const matchProv = !provFilter || c.province === provFilter;
+                const matchName = c.name.toLowerCase().includes(searchInput) || c.province.toLowerCase().includes(searchInput);
+                return matchProv && matchName;
+            });
+
+            if(filtered.length === 0) {
+                container.innerHTML = '<p style="font-size:0.8rem; color:#b2bec3; text-align:center; padding: 20px;">ไม่พบคลินิกที่ค้นหา</p>';
                 return;
             }
 
-            filtered.forEach(cl => {
-                const avgRating = cl.ratings.length > 0 ? (cl.ratings.reduce((a,b)=>a+b,0)/cl.ratings.length).toFixed(1) : '0.0';
+            filtered.forEach(clinic => {
                 const card = document.createElement('div');
-                card.className = 'action-card';
-                card.style.position = 'relative';
-                if (cl.sponsored) {
-                    card.style.border = '1.5px solid var(--primary-color)';
-                }
+                card.className = 'card';
+                card.style.marginBottom = '12px';
+                card.style.padding = '12px';
+                card.style.alignItems = 'flex-start';
                 card.innerHTML = `
-                    ${cl.sponsored ? '<span style="position: absolute; top: 12px; right: 12px; background: var(--primary-gradient); color: white; font-size: 0.62rem; padding: 2px 8px; border-radius: 6px; font-weight: 600;">แนะนำพิเศษ</span>' : ''}
-                    <h3 style="margin-bottom: 4px;"><i class="fas fa-hospital" style="color:var(--primary-color);"></i> ${cl.name}</h3>
-                    <p style="font-size: 0.75rem; color: var(--primary-color); font-weight: 600; margin-bottom: 2px;"><i class="fas fa-map-marker-alt"></i> ${cl.province}</p>
-                    <p style="font-size: 0.78rem; color: #636e72; margin-bottom: 8px;">${cl.desc}</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-                        <span style="font-size: 0.78rem; font-weight: 600; color: #e67e22;">⭐ ${avgRating} / 5.0 (${cl.ratings.length} รีวิว)</span>
-                        <button class="btn-action" style="padding: 6px 12px; font-size: 0.75rem;" onclick="openClinicDetail(${cl.id})">ดูรายละเอียด & จองคิว</button>
+                    <div style="width: 50px; height: 50px; background: #fff0f3; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-size: 1.2rem; flex-shrink: 0; margin-right: 12px;">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3 style="font-size: 0.92rem; font-weight: 600;">${clinic.name} ${clinic.adActive ? '<span style="background:#f39c12; color:white; font-size:0.6rem; padding:2px 6px; border-radius:4px;">แนะนำ/โฆษณา</span>' : ''}</h3>
+                            <span style="font-size: 0.75rem; color: #e67e22; font-weight: 600;">⭐ ${clinic.rating}</span>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--primary-color); font-weight: 500;"><i class="fas fa-map-marker-alt"></i> จังหวัด: ${clinic.province}</p>
+                        <p style="font-size: 0.72rem; color: #636e72; margin-top: 2px;">${clinic.desc}</p>
+                        <button class="btn-detail" style="margin-top: 8px;" onclick="openClinicDetailModal(${clinic.id})">ดูรายละเอียด & จองคิว</button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -2088,20 +2061,17 @@
         }
 
         function filterClinics() {
-            renderClinics();
+            renderClinicsList();
         }
 
-        function openClinicDetail(id) {
-            activeSelectedClinic = clinicsData.find(c => c.id === id);
-            if (!activeSelectedClinic) return;
+        function openClinicDetailModal(clinicId) {
+            selectedClinicForModal = clinicsDB.find(c => c.id === clinicId);
+            if(!selectedClinicForModal) return;
 
-            document.getElementById('modalClinicName').innerText = activeSelectedClinic.name;
-            document.getElementById('modalClinicProvince').innerHTML = `<i class="fas fa-map-marker-alt"></i> จังหวัด: ${activeSelectedClinic.province}`;
-            document.getElementById('modalClinicDesc').innerText = activeSelectedClinic.desc;
-
-            const avg = activeSelectedClinic.ratings.length > 0 ? (activeSelectedClinic.ratings.reduce((a,b)=>a+b,0)/activeSelectedClinic.ratings.length).toFixed(1) : '0.0';
-            document.getElementById('modalClinicRatingDisplay').innerText = `⭐ ${avg} / 5.0 (${activeSelectedClinic.ratings.length} รีวิว)`;
-
+            document.getElementById('modalClinicName').textContent = selectedClinicForModal.name;
+            document.getElementById('modalClinicProvince').textContent = `📍 จังหวัด: ${selectedClinicForModal.province}`;
+            document.getElementById('modalClinicDesc').textContent = selectedClinicForModal.desc;
+            document.getElementById('modalClinicRatingDisplay').textContent = `⭐ ${selectedClinicForModal.rating} / 5.0 (${selectedClinicForModal.reviewsCount} รีวิว)`;
             document.getElementById('clinicDetailModal').style.display = 'flex';
         }
 
@@ -2112,68 +2082,131 @@
         function submitBooking() {
             const date = document.getElementById('bookingDate').value;
             const species = document.getElementById('bookingSpecies').value;
-            const symptoms = document.getElementById('bookingSymptoms').value;
+            const symptoms = document.getElementById('bookingSymptoms').value.trim();
+            const count = document.getElementById('bookingCount').value || 1;
 
-            if (!date || !symptoms) {
-                alert('กรุณากรอกข้อมูลวันที่และอาการให้ครบถ้วน');
+            if(!date || !symptoms) {
+                alert('กรุณากรอกวันที่และอาการเบื้องต้นให้ครบถ้วน');
                 return;
             }
 
-            bookingsList.push({
-                id: Date.now(),
-                clinicName: activeSelectedClinic.name,
-                date,
-                species,
-                symptoms,
-                status: 'รอยืนยันคิว'
-            });
+            // เสียค่าจอง 30฿ ต่อครั้ง
+            const confirmPay = confirm(`ยืนยันการจองคิวที่ "${selectedClinicForModal.name}" จำนวน ${count} ตัว\nค่าบริการจองคิว 30฿ ต่อครั้ง (ชำระให้กับผู้พัฒนาระบบ)`);
+            if(!confirmPay) return;
 
-            alert('จองคิวสำเร็จ! ค่าบริการจอง 30 บาท (ชำระหน้าคลินิก)');
+            bookingsDB.push({
+                id: Date.now(),
+                user: currentUserEmail || 'user@test.com',
+                clinicEmail: selectedClinicForModal.email,
+                clinicName: selectedClinicForModal.name,
+                date, species, symptoms, count,
+                feePaid: 30,
+                status: 'รอยืนยัน'
+            });
+            localStorage.setItem('petcare_bookingsDB', JSON.stringify(bookingsDB));
+            alert('จองคิวสำเร็จ! เสียค่าจอง 30฿ เรียบร้อย ระบบได้ส่งข้อมูลไปยังคลินิกแล้ว');
             closeClinicModal();
             renderUserBookings();
         }
 
         function renderUserBookings() {
             const container = document.getElementById('userBookingsListContainer');
-            if (!container) return;
-
+            if(!container) return;
             container.innerHTML = '';
-            if (bookingsList.length === 0) {
-                container.innerHTML = '<p style="font-size: 0.75rem; color: #b2bec3;">ยังไม่มีประวัติการจองคิว</p>';
+
+            const myBookings = bookingsDB.filter(b => b.user === (currentUserEmail || 'user@test.com'));
+            if(myBookings.length === 0) {
+                container.innerHTML = '<p style="font-size:0.75rem; color:#b2bec3;">ยังไม่มีประวัติการจองคิว</p>';
                 return;
             }
 
-            bookingsList.forEach(b => {
-                const div = document.createElement('div');
-                div.style.cssText = 'background: #fdfefe; border: 1px solid #dfe6e9; padding: 10px; border-radius: 10px; font-size: 0.78rem;';
-                div.innerHTML = `
-                    <strong>คลินิก: ${b.clinicName}</strong><br>
-                    <span style="color: #636e72;">วันที่: ${b.date} | ชนิดสัตว์: ${b.species}</span><br>
-                    <span style="color: #2d3436;">อาการ: ${b.symptoms}</span><br>
-                    <span style="display: inline-block; margin-top: 4px; padding: 2px 8px; background: #fff3cd; color: #856404; border-radius: 6px; font-size: 0.7rem; font-weight: 600;">สถานะ: ${b.status}</span>
+            myBookings.forEach(b => {
+                const item = document.createElement('div');
+                item.style.cssText = 'background: #fff; border: 1.5px solid #f1f2f6; padding: 10px; border-radius: 10px; font-size: 0.78rem; display: flex; justify-content: space-between; align-items: center;';
+                item.innerHTML = `
+                    <div>
+                        <strong>คลินิก: ${b.clinicName}</strong><br>
+                        <span style="color:#636e72;">วันที่: ${b.date} | ชนิด: ${b.species} (${b.count} ตัว)</span><br>
+                        <span style="color:#636e72;">อาการ: ${b.symptoms}</span><br>
+                        <span style="color:var(--primary-color); font-weight:600;">สถานะ: ${b.status} (ค่าจอง 30฿)</span>
+                    </div>
                 `;
-                container.appendChild(div);
+                container.appendChild(item);
             });
         }
 
-        function submitClinicReview() {
-            const rating = parseInt(document.getElementById('reviewRatingSelect').value);
-            const comment = document.getElementById('reviewCommentInput').value;
+        // คลินิกจัดการคิว ยืนยัน/ยกเลิก
+        function renderClinicIncomingBookings(clinicEmail) {
+            const container = document.getElementById('clinicIncomingBookingsContainer');
+            if(!container) return;
+            container.innerHTML = '';
 
-            if (!activeSelectedClinic) return;
-            activeSelectedClinic.ratings.push(rating);
+            const incoming = bookingsDB.filter(b => b.clinicEmail === clinicEmail);
+            if(incoming.length === 0) {
+                container.innerHTML = '<p style="font-size:0.78rem; color:#b2bec3;">ยังไม่มีรายการจองคิวจากผู้ใช้บริการ</p>';
+                return;
+            }
 
-            const avg = (activeSelectedClinic.ratings.reduce((a,b)=>a+b,0)/activeSelectedClinic.ratings.length).toFixed(1);
-            document.getElementById('modalClinicRatingDisplay').innerText = `⭐ ${avg} / 5.0 (${activeSelectedClinic.ratings.length} รีวิว)`;
-            document.getElementById('reviewCommentInput').value = '';
-
-            alert('ขอบคุณสำหรับความคิดเห็นและรีวิวของคุณ!');
-            renderClinics();
+            incoming.forEach(b => {
+                const item = document.createElement('div');
+                item.style.cssText = 'background: #fafbfc; border: 1px solid #dfe6e9; padding: 12px; border-radius: 12px; font-size: 0.8rem; display: flex; flex-direction: column; gap: 6px;';
+                item.innerHTML = `
+                    <div><strong>ผู้จอง:</strong> ${b.user}</div>
+                    <div><strong>วันนัด:</strong> ${b.date} | <strong>ชนิดสัตว์:</strong> ${b.species} (${b.count} ตัว)</div>
+                    <div><strong>อาการเบื้องต้น:</strong> ${b.symptoms}</div>
+                    <div><strong>สถานะปัจจุบัน:</strong> <span style="color:${b.status === 'ยืนยันแล้ว' ? '#27ae60' : (b.status === 'ยกเลิกแล้ว' ? '#e74c3c' : '#e67e22')}; font-weight:600;">${b.status}</span></div>
+                    <div style="display:flex; gap: 6px; margin-top: 4px;">
+                        <button class="btn-action" style="padding: 4px 10px; font-size:0.72rem; background:#27ae60;" onclick="updateBookingStatus(${b.id}, 'ยืนยันแล้ว')">ยืนยัน</button>
+                        <button class="btn-action" style="padding: 4px 10px; font-size:0.72rem; background:#e74c3c;" onclick="updateBookingStatus(${b.id}, 'ยกเลิกแล้ว')">ยกเลิก</button>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
         }
 
+        function updateBookingStatus(bookingId, status) {
+            const b = bookingsDB.find(x => x.id === bookingId);
+            if(b) {
+                b.status = status;
+                localStorage.setItem('petcare_bookingsDB', JSON.stringify(bookingsDB));
+                renderClinicIncomingBookings(b.clinicEmail);
+                alert(`เปลี่ยนสถานะการจองเป็น "${status}" เรียบร้อย`);
+            }
+        }
+
+        function saveClinicProfileDetails() {
+            const name = document.getElementById('clinicNameInput').value.trim();
+            const province = document.getElementById('clinicProvinceInput').value;
+            const desc = document.getElementById('clinicDescInput').value.trim();
+
+            const clinic = clinicsDB.find(c => c.email === currentUserEmail);
+            if(clinic) {
+                clinic.name = name;
+                clinic.province = province;
+                clinic.desc = desc;
+                localStorage.setItem('petcare_clinicsDB', JSON.stringify(clinicsDB));
+                alert('บันทึกข้อมูลคลินิกเรียบร้อย!');
+            }
+        }
+
+        function buyClinicAdPackage() {
+            const price = document.getElementById('adPackageSelect').value;
+            const confirmBuy = confirm(`ยืนยันการซื้อแพ็คเกจโฆษณาคลินิก ราคา ${price}฿ ชำระให้กับผู้พัฒนาระบบ`);
+            if(!confirmBuy) return;
+
+            const clinic = clinicsDB.find(c => c.email === currentUserEmail);
+            if(clinic) {
+                clinic.adActive = true;
+                localStorage.setItem('petcare_clinicsDB', JSON.stringify(clinicsDB));
+                document.getElementById('adStatusText').textContent = 'สถานะโฆษณา: เปิดใช้งานอยู่ (แสดงอันดับแรก)';
+                alert('ชำระเงินและเปิดใช้งานแพ็คเกจโฆษณาสำเร็จ คลินิกของคุณจะแสดงหน้าผู้ใช้งานบ่อยและขึ้นที่แรกเมื่อค้นหา');
+            }
+        }
+
+        // ระบบแชทถามคลินิก
         function openChatWithClinic() {
-            if (!activeSelectedClinic) return;
-            document.getElementById('chatClinicName').innerText = `แชทกับ: ${activeSelectedClinic.name}`;
+            if(!selectedClinicForModal) return;
+            document.getElementById('chatClinicName').textContent = `แชทกับ: ${selectedClinicForModal.name}`;
             document.getElementById('clinicDetailModal').style.display = 'none';
             document.getElementById('chatModal').style.display = 'flex';
         }
@@ -2183,70 +2216,51 @@
         }
 
         function sendChatMessage() {
-            const input = document.getElementById('chatInputMsg');
-            const msg = input.value.trim();
-            if (!msg) return;
+            const input = document.getElementById('chatInputMessage');
+            const text = input.value.trim();
+            if(!text) return;
 
             const chatMessages = document.getElementById('chatMessages');
-            const userBubble = document.createElement('div');
-            userBubble.style.cssText = 'background: #ff6b81; color: white; padding: 8px 12px; border-radius: 10px; align-self: flex-end; max-width: 80%;';
-            userBubble.textContent = msg;
-            chatMessages.appendChild(userBubble);
-
+            const userMsg = document.createElement('div');
+            userMsg.style.cssText = 'background: #ffe3e8; padding: 8px 12px; border-radius: 10px; align-self: flex-end; max-width: 80%;';
+            userMsg.textContent = text;
+            chatMessages.appendChild(userMsg);
             input.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
 
             setTimeout(() => {
-                const replyBubble = document.createElement('div');
-                replyBubble.style.cssText = 'background: white; padding: 8px 12px; border-radius: 10px; align-self: flex-start; border: 1px solid #f1f2f6; max-width: 80%;';
-                replyBubble.textContent = 'ทางคลินิกได้รับข้อความแล้วค่ะ เจ้าหน้าที่กำลังตรวจสอบและจะติดต่อกลับโดยเร็วที่สุดนะคะ 🐾';
-                chatMessages.appendChild(replyBubble);
+                const replyMsg = document.createElement('div');
+                replyMsg.style.cssText = 'background: white; padding: 8px 12px; border-radius: 10px; align-self: flex-start; border: 1px solid #f1f2f6; max-width: 80%;';
+                replyMsg.textContent = 'ทางคลินิกได้รับข้อความแล้วค่ะ จะรีบตอบกลับโดยเร็วที่สุดนะคะ 🐾';
+                chatMessages.appendChild(replyMsg);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 1000);
+            }, 800);
         }
 
-        function showBreedDetail(species, breedKey) {
-            const data = breedDetailsData[species] && breedDetailsData[species][breedKey];
-            if (!data) return;
+        // รีวิวคลินิก
+        function submitClinicReview() {
+            const rating = parseInt(document.getElementById('reviewRatingSelect').value);
+            const comment = document.getElementById('reviewCommentInput').value.trim();
 
-            document.getElementById('modalBreedTitle').innerText = data.title;
-            document.getElementById('modalBreedChar').innerText = data.char;
-            document.getElementById('modalBreedBehavior').innerText = data.behavior;
-            document.getElementById('modalBreedCare').innerText = data.care;
-
-            document.getElementById('breedDetailModal').style.display = 'flex';
-        }
-
-        function closeBreedModal() {
-            document.getElementById('breedDetailModal').style.display = 'none';
+            if(selectedClinicForModal) {
+                const newCount = selectedClinicForModal.reviewsCount + 1;
+                const newRating = ((selectedClinicForModal.rating * selectedClinicForModal.reviewsCount) + rating) / newCount;
+                selectedClinicForModal.rating = parseFloat(newRating.toFixed(1));
+                selectedClinicForModal.reviewsCount = newCount;
+                localStorage.setItem('petcare_clinicsDB', JSON.stringify(clinicsDB));
+                alert('ขอบคุณสำหรับรีวิวคลินิก!');
+                document.getElementById('modalClinicRatingDisplay').textContent = `⭐ ${selectedClinicForModal.rating} / 5.0 (${selectedClinicForModal.reviewsCount} รีวิว)`;
+            }
         }
 
         function showArticleModal(title, body) {
-            document.getElementById('modalArticleTitle').innerText = title;
-            document.getElementById('modalArticleBody').innerText = body;
+            document.getElementById('modalArticleTitle').textContent = title;
+            document.getElementById('modalArticleBody').textContent = body;
             document.getElementById('articleModal').style.display = 'flex';
         }
 
         function closeArticleModal() {
             document.getElementById('articleModal').style.display = 'none';
         }
-
-        function saveClinicProfileDetails() {
-            if (!currentUser || currentUser.role !== 'clinic') return;
-            currentUser.name = document.getElementById('clinicNameInput').value;
-            currentUser.province = document.getElementById('clinicProvinceInput').value;
-            currentUser.desc = document.getElementById('clinicDescInput').value;
-
-            document.getElementById('headerTitle').innerText = `คลินิก: ${currentUser.name}`;
-            document.getElementById('headerSubtitle').innerText = `จังหวัด: ${currentUser.province}`;
-            alert('บันทึกข้อมูลคลินิกเรียบร้อยแล้ว');
-        }
-
-        window.onload = function() {
-            populateDropdowns();
-            renderMyCats();
-            renderClinics();
-        };
     </script>
 </body>
 </html>
