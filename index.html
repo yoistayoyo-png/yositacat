@@ -117,7 +117,7 @@
             border-radius: 10px;
             background: transparent;
             font-family: 'Prompt', sans-serif;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -664,6 +664,9 @@
                     <button type="button" class="role-btn" id="roleClinicBtn" onclick="setAuthRole('clinic')">
                         <i class="fas fa-hospital"></i><span>คลินิกสัตว์</span>
                     </button>
+                    <button type="button" class="role-btn" id="roleAdminBtn" onclick="setAuthRole('admin')">
+                        <i class="fas fa-user-shield"></i><span>แอดมินกลาง</span>
+                    </button>
                 </div>
 
                 <div class="auth-tabs" id="authTabsContainer">
@@ -702,7 +705,7 @@
                             <input type="email" id="authEmail" required placeholder="name@example.com">
                         </div>
                     </div>
-                    <div class="auth-form-group">
+                    <div class="auth-form-group" id="passwordGroupContainer">
                         <label>รหัสผ่าน</label>
                         <div class="input-with-icon">
                             <i class="fas fa-lock"></i>
@@ -712,7 +715,7 @@
                     <button type="submit" class="btn-auth" id="authSubmitBtn">เข้าสู่ระบบ</button>
                 </form>
 
-                <div class="switch-mode-text" onclick="toggleAuthModeText()">
+                <div class="switch-mode-text" id="switchModeTextContainer" onclick="toggleAuthModeText()">
                     <span id="switchTextPrompt">ยังไม่มีบัญชีใช่ไหม? สมัครสมาชิก</span>
                 </div>
             </div>
@@ -790,7 +793,7 @@
                     <h3><i class="fas fa-cat" style="color: var(--primary-color);"></i> โรคและอาการป่วยในแมว</h3>
                     <ul style="padding-left: 18px; font-size: 0.82rem; color: #636e72; line-height: 1.6;">
                         <li><strong>โรคไข้หัดแมว (Panleukopenia):</strong> ซึม เบื่ออาหาร อาเจียน ท้องเสียรุนแรง</li>
-                        <li><strong>โรคระบบทางเดินปัสสาวะอักเสบ (FLUTD):</strong> ฉี่ไม่ออก ฉี่มีเลือดปن เบ่งฉี่</li>
+                        <li><strong>โรคระบบทางเดินปัสสาวะอักเสบ (FLUTD):</strong> ฉี่ไม่ออก ฉี่มีเลือดปน เบ่งฉี่</li>
                         <li><strong>โรคผิวหนังเชื้อรา:</strong> คัน เกา ขนร่วงเป็นวง มีสะเก็ดรังแค</li>
                     </ul>
                 </div>
@@ -1177,11 +1180,18 @@
                 </div>
             </section>
 
-            <!-- แท็บที่ 8: ระบบจัดการผู้พัฒนา (Super Admin) -->
+            <!-- แท็บที่ 8: ระบบจัดการผู้พัฒนา (Super Admin) - ตรวจสอบรายการชำระเงิน -->
             <section id="superAdminTab" class="tab-content">
                 <h2><i class="fas fa-user-shield section-icon" style="color: #e74c3c;"></i> ระบบผู้พัฒนาระบบกลาง (Super Admin)</h2>
-                <p style="font-size: 0.78rem; color: #636e72; margin-bottom: 14px;">หน้าควบคุมและตรวจสอบรายการชำระเงินของระบบ</p>
-                
+                <p style="font-size: 0.78rem; color: #636e72; margin-bottom: 14px;">หน้าควบคุม ตรวจสอบ และอนุมัติรายการชำระเงินของระบบทั้งหมด</p>
+
+                <!-- ช่องรายได้รวมทั้งหมดจากการกดยืนยันการชำระเงิน -->
+                <div class="action-card" style="border-top: 3px solid #e74c3c; background: linear-gradient(135deg, #fff5f5, #ffe3e3);">
+                    <h3 style="margin-bottom: 6px; color: #c0392b;"><i class="fas fa-wallet"></i> รายได้รวมทั้งหมดจากการกดยืนยันการชำระเงิน</h3>
+                    <p style="font-size: 0.75rem; color: #7f8c8d; margin-bottom: 10px;">ยอดรวมเงินสะสมจากทุกรายการที่แอดมินกดยืนยันการชำระเงินสำเร็จแล้ว</p>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #e74c3c;" id="superAdminTotalRevenue">0 ฿</div>
+                </div>
+
                 <div class="action-card" style="border-top: 3px solid #3498db;">
                     <h3 style="margin-bottom: 10px;"><i class="fas fa-receipt" style="color: #3498db;"></i> รายการแจ้งชำระเงินรอตรวจสอบ</h3>
                     <p style="font-size: 0.75rem; color: #636e72; margin-bottom: 10px;">ตรวจสอบสลิปและกดยืนยันการชำระเงินของผู้ใช้งานและคลินิก</p>
@@ -1342,7 +1352,7 @@
         </div>
     </div>
 
-    <!-- Modal ชำระเงินสมัครแพ็คเกจสมาชิกผู้ใช้ (เพิ่มช่องกรอกชื่อบัญชีที่ใช้โอน) -->
+    <!-- Modal ชำระเงินสมัครแพ็คเกจสมาชิกผู้ใช้ -->
     <div id="userSubPaymentModal" class="modal">
         <div class="modal-content text-center">
             <div class="close-btn" onclick="closeUserSubPaymentModal()"><i class="fas fa-times"></i></div>
@@ -1364,7 +1374,7 @@
         </div>
     </div>
 
-    <!-- Modal ชำระเงินแพ็คเกจโฆษณาคลินิก (เพิ่มช่องกรอกชื่อบัญชีที่ใช้โอน) -->
+    <!-- Modal ชำระเงินแพ็คเกจโฆษณาคลินิก -->
     <div id="clinicPaymentModal" class="modal">
         <div class="modal-content text-center">
             <div class="close-btn" onclick="closeClinicPaymentModal()"><i class="fas fa-times"></i></div>
@@ -1405,7 +1415,7 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        const GOOGLE_SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz.../exec";
+        const GOOGLE_SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz_PetCare_Hub_Demo_Endpoint/exec";
 
         function sendDataToGoogleSheet(actionType, dataPayload) {
             if(!GOOGLE_SHEET_WEB_APP_URL || GOOGLE_SHEET_WEB_APP_URL.includes("AKfycbz...")) {
@@ -1821,6 +1831,7 @@
             if(adminMapInstance) {
                 adminMapInstance.setView([myClinicData.lat, myClinicData.lng], 15);
                 L.marker([myClinicData.lat, myClinicData.lng]).addTo(adminMapInstance);
+                setTimeout(() => { adminMapInstance.invalidateSize(); }, 200);
             }
         }
 
@@ -1836,21 +1847,48 @@
             currentUserRole = role;
             document.getElementById('roleUserBtn').classList.toggle('active', role === 'user');
             document.getElementById('roleClinicBtn').classList.toggle('active', role === 'clinic');
+            document.getElementById('roleAdminBtn').classList.toggle('active', role === 'admin');
             
             const sub = document.getElementById('authSubtitle');
             const provinceGroup = document.getElementById('clinicProvinceFieldGroup');
             const descGroup = document.getElementById('clinicDescFieldGroup');
+            const authTabs = document.getElementById('authTabsContainer');
+            const switchTextContainer = document.getElementById('switchModeTextContainer');
+            const passwordGroup = document.getElementById('passwordGroupContainer');
+
+            provinceGroup.style.display = 'none';
+            descGroup.style.display = 'none';
+            passwordGroup.style.display = 'block';
+
+            document.getElementById('authEmail').value = '';
+            document.getElementById('authPassword').value = '';
 
             if(role === 'user') {
                 sub.textContent = 'สวัสดี, ผู้ใช้งาน 🐾 เลือกประเภทบัญชีเพื่อเข้าสู่ระบบ';
                 document.getElementById('nameFieldLabel').textContent = 'ชื่อ-นามสกุล (เจ้าของสัตว์เลี้ยง)';
-                provinceGroup.style.display = 'none';
-                descGroup.style.display = 'none';
-            } else {
+                document.getElementById('authEmail').placeholder = 'name@example.com';
+                document.getElementById('authPassword').placeholder = '********';
+                authTabs.style.display = 'flex';
+                switchTextContainer.style.display = 'block';
+                switchAuthMode('login');
+            } else if(role === 'clinic') {
                 sub.textContent = 'สวัสดี, เจ้าของคลินิกสัตว์ 🏥 เข้าสู่ระบบเพื่อจัดการคลินิกของคุณ';
                 document.getElementById('nameFieldLabel').textContent = 'ชื่อคลินิก / ผู้ดูแล';
+                document.getElementById('authEmail').placeholder = 'clinic@example.com';
+                document.getElementById('authPassword').placeholder = '********';
                 provinceGroup.style.display = 'block';
                 descGroup.style.display = 'block';
+                authTabs.style.display = 'flex';
+                switchTextContainer.style.display = 'block';
+                switchAuthMode('login');
+            } else if(role === 'admin') {
+                sub.textContent = '🔒 สำหรับแอดมินกลาง (กรุณากรอกอีเมลและรหัสผ่านเพื่อเข้าสู่ระบบ)';
+                authTabs.style.display = 'none';
+                switchTextContainer.style.display = 'none';
+                document.getElementById('authEmail').placeholder = 'กรอกอีเมลแอดมิน';
+                document.getElementById('authPassword').placeholder = 'กรอกรหัสผ่านเพื่อเข้าสู่ระบบ';
+                passwordGroup.style.display = 'block'; 
+                switchAuthMode('login');
             }
         }
 
@@ -1862,6 +1900,16 @@
             const regFields = document.getElementById('registerFields');
             const submitBtn = document.getElementById('authSubmitBtn');
             const promptText = document.getElementById('switchTextPrompt');
+
+            document.getElementById('authEmail').value = '';
+            document.getElementById('authPassword').value = '';
+
+            if(currentUserRole === 'admin') {
+                tabs.style.display = 'none';
+                regFields.style.display = 'none';
+                submitBtn.textContent = 'เข้าสู่ระบบแอดมิน';
+                return;
+            }
 
             if(mode === 'login') {
                 tabs.classList.remove('register-mode');
@@ -1881,6 +1929,7 @@
         }
 
         function toggleAuthModeText() {
+            if(currentUserRole === 'admin') return;
             switchAuthMode(currentAuthMode === 'login' ? 'register' : 'login');
         }
 
@@ -1890,6 +1939,18 @@
             const password = document.getElementById('authPassword').value;
             const name = document.getElementById('authName').value || 'ผู้ใช้งานระบบ';
             
+            if(currentUserRole === 'admin') {
+                if(password !== '1234') {
+                    alert('รหัสผ่านแอดมินไม่ถูกต้อง! กรุณาลองใหม่อีกครั้ง');
+                    return;
+                }
+                loggedInUserEmail = email;
+                document.getElementById('authScreen').style.display = 'none';
+                applyRoleUIMode('admin', email);
+                addNotification('เข้าสู่ระบบแอดมินกลางสำเร็จ');
+                return;
+            }
+
             let registeredUsers = getRegisteredUsers();
 
             if (currentAuthMode === 'register') {
@@ -1901,6 +1962,9 @@
                 }
                 registeredUsers.push({ email, password, name, role: currentUserRole });
                 saveRegisteredUsers(registeredUsers);
+                
+                sendDataToGoogleSheet('REGISTER_USER', { email, name, role: currentUserRole, timestamp: new Date().toISOString() });
+
                 alert('สมัครสมาชิกสำเร็จ! กรุณาเข้าสู่ระบบด้วยอีเมลและรหัสผ่านของคุณ');
                 switchAuthMode('login');
                 return;
@@ -1908,16 +1972,15 @@
 
             let foundUser = registeredUsers.find(u => u.email === email && u.password === password);
             
-            if (!foundUser && email !== 'Yoistayoyo@gmail.com') {
+            if (!foundUser) {
                 alert('เข้าสู่ระบบไม่สำเร็จ: ไม่พบข้อมูลบัญชีนี้ในระบบ หรือรหัสผ่านไม่ถูกต้อง กรุณาสมัครสมาชิกก่อน');
                 return;
             }
 
             loggedInUserEmail = email; 
 
-            sendDataToGoogleSheet('SAVE_USER', {
+            sendDataToGoogleSheet('LOGIN_USER', {
                 email: email,
-                password: password,
                 name: foundUser ? foundUser.name : name,
                 role: currentUserRole,
                 timestamp: new Date().toISOString()
@@ -1925,8 +1988,9 @@
 
             document.getElementById('authScreen').style.display = 'none';
 
-            applyRoleUIMode(currentUserRole, email);
-            addNotification(`เข้าสู่ระบบสำเร็จ ยินดีต้อนรับ ${foundUser ? foundUser.name : name} (${currentUserRole === 'user' ? 'เจ้าของสัตว์เลี้ยง' : 'คลินิกสัตว์'})`);
+            let effectiveRole = currentUserRole;
+            applyRoleUIMode(effectiveRole, email);
+            addNotification(`เข้าสู่ระบบสำเร็จ ยินดีต้อนรับ ${foundUser ? foundUser.name : name}`);
         }
 
         function logout() {
@@ -1934,6 +1998,7 @@
             document.getElementById('authScreen').style.display = 'flex';
             document.getElementById('authEmail').value = '';
             document.getElementById('authPassword').value = '';
+            setAuthRole('user');
         }
 
         function applyRoleUIMode(role, email) {
@@ -1952,7 +2017,7 @@
             const navTreatmentDash = document.getElementById('navTreatmentDash');
             const navSuperAdminTab = document.getElementById('navSuperAdminTab');
 
-            if(email === 'Yoistayoyo@gmail.com') {
+            if(role === 'admin') {
                 headerIcon.className = 'fas fa-user-shield';
                 headerTitle.textContent = 'PetCare Super Admin';
                 headerSubtitle.textContent = 'ระบบควบคุมและยืนยันการชำระเงินกลาง';
@@ -2039,7 +2104,9 @@
                 renderSpeciesDiseaseCharts();
                 renderTreatmentRecordsList();
             } else if(tabName === 'clinicDashboardContent') {
-                setTimeout(() => { initAdminMap(); }, 300);
+                setTimeout(() => { 
+                    initAdminMap(); 
+                }, 300);
             } else if(tabName === 'superAdminTab') {
                 renderSuperAdminPaymentsList();
             }
@@ -2206,7 +2273,7 @@
             }
 
             saveAccountPets(myPets);
-            sendDataToGoogleSheet('SAVE_PET_PROFILE', petDataObj);
+            sendDataToGoogleSheet('SAVE_PET_PROFILE', { owner: loggedInUserEmail, ...petDataObj });
 
             closeCatModal();
             renderMyCats();
@@ -2402,6 +2469,8 @@
             vetSchedules.push(newSch);
             localStorage.setItem('petcare_schedules', JSON.stringify(vetSchedules));
 
+            sendDataToGoogleSheet('SAVE_SCHEDULE', { owner: loggedInUserEmail, ...newSch });
+
             document.getElementById('reminderBox').style.display = 'block';
             document.getElementById('reminderText').textContent = `นัดหมาย "${reason}" สำหรับ ${pet.name} ในวันที่ ${date}`;
             renderVetSchedulesList();
@@ -2549,6 +2618,7 @@
             populateCatSelectDropdowns();
             document.getElementById('clinicDetailModal').style.display = 'flex';
 
+            // แก้ไข: ใช้ setTimeout พร้อมสั่ง invalidateSize() เพื่อให้ Leaflet โหลดแผนที่ใน Modal ของฝั่งผู้ใช้งานได้ถูกต้อง
             setTimeout(() => {
                 initCustomerMap(selectedClinicForBooking.lat, selectedClinicForBooking.lng, selectedClinicForBooking.name);
             }, 300);
@@ -2565,6 +2635,11 @@
             customerMapInstance = L.map('customerClinicMap').setView([lat, lng], 15);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(customerMapInstance);
             L.marker([lat, lng]).addTo(customerMapInstance).bindPopup(title).openPopup();
+            
+            // แก้ไข: บังคับให้ Leaflet คำนวณขนาดใหม่ ป้องกันปัญหาแผนที่เทาหรือแสดงผลไม่เต็มกล่อง
+            setTimeout(() => {
+                customerMapInstance.invalidateSize();
+            }, 200);
         }
 
         function proceedToBookingPayment() {
@@ -2641,6 +2716,8 @@
             allClinicIncomingMap[clinicKeyTarget].push(tempBookingData);
             localStorage.setItem('petcare_all_clinic_incoming_map', JSON.stringify(allClinicIncomingMap));
 
+            sendDataToGoogleSheet('SAVE_BOOKING', tempBookingData);
+
             alert('จองคิวสำเร็จทันที! เนื่องจากท่านสมัครแพ็คเกจสมาชิกผู้ใช้งานเรียบร้อยแล้ว ไม่ต้องรอเจ้าหน้าที่ยืนยัน');
             addNotification(`จองคิวสำเร็จ (แพ็คเกจสมาชิก): ${tempBookingData.clinicName} (${tempBookingData.date} เวลา ${tempBookingData.time})`);
             renderUserBookingsList();
@@ -2671,7 +2748,7 @@
             allClinicIncomingMap[clinicKeyTarget].push(tempBookingData);
             localStorage.setItem('petcare_all_clinic_incoming_map', JSON.stringify(allClinicIncomingMap));
 
-            globalPaymentsList.unshift({
+            let paymentObj = {
                 id: tempBookingData.id,
                 payerEmail: loggedInUserEmail || 'user@petcare.com',
                 payerName: 'เจ้าของสัตว์เลี้ยง (' + tempBookingData.petName + ')',
@@ -2681,9 +2758,12 @@
                 slipUrl: slipBase64,
                 status: 'รอเจ้าหน้าที่กดยืนยัน',
                 timestamp: new Date().toLocaleString('th-TH')
-            });
+            };
+
+            globalPaymentsList.unshift(paymentObj);
             localStorage.setItem('petcare_global_payments', JSON.stringify(globalPaymentsList));
 
+            sendDataToGoogleSheet('SAVE_PAYMENT_AND_BOOKING', { payment: paymentObj, booking: tempBookingData });
             triggerAdminEmailNotification(loggedInUserEmail || 'user@petcare.com', 'ค่าจองคิวรายครั้ง', 30);
 
             closeUserBookingPaymentModal();
@@ -2720,7 +2800,7 @@
             const price = document.getElementById('selectedUserPkgPrice').value;
             let planName = price === '69' ? 'ราย 1 เดือน' : (price === '159' ? 'ราย 3 เดือน' : 'รายปี');
 
-            globalPaymentsList.unshift({
+            let paymentObj = {
                 id: Date.now().toString(),
                 payerEmail: loggedInUserEmail || 'user@petcare.com',
                 payerName: 'ผู้ใช้งานระบบ (สมัครแพ็คเกจ)',
@@ -2730,9 +2810,12 @@
                 status: 'รอเจ้าหน้าที่กดยืนยัน',
                 plan: planName,
                 timestamp: new Date().toLocaleString('th-TH')
-            });
+            };
+
+            globalPaymentsList.unshift(paymentObj);
             localStorage.setItem('petcare_global_payments', JSON.stringify(globalPaymentsList));
 
+            sendDataToGoogleSheet('SAVE_PAYMENT', paymentObj);
             triggerAdminEmailNotification(loggedInUserEmail || 'user@petcare.com', `แพ็คเกจสมาชิกผู้ใช้ (${planName})`, parseInt(price));
 
             closeUserSubPaymentModal();
@@ -2837,6 +2920,11 @@
             adminMapInstance = L.map('clinicAdminMap').setView([myClinicData.lat, myClinicData.lng], 15);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(adminMapInstance);
             L.marker([myClinicData.lat, myClinicData.lng]).addTo(adminMapInstance).bindPopup(myClinicData.name).openPopup();
+            
+            // แก้ไข: บังคับให้อัปเดตขนาดแผนที่ของฝั่งแอดมินคลินิก
+            setTimeout(() => {
+                adminMapInstance.invalidateSize();
+            }, 200);
         }
 
         function saveClinicProfileDetails() {
@@ -2879,6 +2967,11 @@
                     let m = L.map('myClinicProfileMap').setView([myClinicData.lat, myClinicData.lng], 15);
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(m);
                     L.marker([myClinicData.lat, myClinicData.lng]).addTo(m).bindPopup(myClinicData.name).openPopup();
+                    
+                    // แก้ไข: บังคับอัปเดตขนาดแผนที่หน้าข้อมูลคลินิกของฉัน
+                    setTimeout(() => {
+                        m.invalidateSize();
+                    }, 200);
                 }
             }, 300);
         }
@@ -2935,6 +3028,7 @@
             if(target) {
                 target.status = 'คลินิกยืนยันรับคิวเรียบร้อยแล้ว';
                 localStorage.setItem('petcare_all_clinic_incoming_map', JSON.stringify(allClinicIncomingMap));
+                sendDataToGoogleSheet('UPDATE_BOOKING_STATUS', target);
                 renderClinicIncomingBookings();
                 alert('คลินิกได้กดยืนยันรับคิวเรียบร้อยแล้ว');
             }
@@ -2947,6 +3041,7 @@
             if(target) {
                 target.status = 'คลินิกยกเลิกคิวแล้ว';
                 localStorage.setItem('petcare_all_clinic_incoming_map', JSON.stringify(allClinicIncomingMap));
+                sendDataToGoogleSheet('UPDATE_BOOKING_STATUS', target);
                 renderClinicIncomingBookings();
                 alert('คลินิกได้กดยยกเลิกคิวเรียบร้อยแล้ว');
             }
@@ -3098,7 +3193,7 @@
             };
             localStorage.setItem('petcare_clinic_ad_status', JSON.stringify(clinicAdPackageStatus));
 
-            globalPaymentsList.unshift({
+            let paymentObj = {
                 id: Date.now().toString(),
                 payerEmail: loggedInUserEmail || 'clinic@petcare.com',
                 payerName: 'คลินิกสัตว์ (ซื้อแพ็คเกจโฆษณา)',
@@ -3108,9 +3203,12 @@
                 slipUrl: slipBase64,
                 status: 'รอเจ้าหน้าที่กดยืนยัน',
                 timestamp: new Date().toLocaleString('th-TH')
-            });
+            };
+
+            globalPaymentsList.unshift(paymentObj);
             localStorage.setItem('petcare_global_payments', JSON.stringify(globalPaymentsList));
 
+            sendDataToGoogleSheet('SAVE_PAYMENT', paymentObj);
             triggerAdminEmailNotification(loggedInUserEmail || 'clinic@petcare.com', `แพ็คเกจโฆษณาคลินิก (${planName})`, parseInt(price));
 
             closeClinicPaymentModal();
@@ -3119,11 +3217,27 @@
         }
 
         function triggerAdminEmailNotification(payerEmail, paymentDesc, amount) {
-            console.log(`[EMAIL NOTIFICATION SENT TO Yoistayoyo@gmail.com]: มีผู้ส่งข้อมูลการจ่ายเงินเข้ามา! อีเมลผู้จ่าย: ${payerEmail}, รายการ: ${paymentDesc}, จำนวนเงิน: ${amount} บาท`);
+            console.log(`[EMAIL NOTIFICATION SENT TO Admin@gmail.com]: มีผู้ส่งข้อมูลการจ่ายเงินเข้ามา! อีเมลผู้จ่าย: ${payerEmail}, รายการ: ${paymentDesc}, จำนวนเงิน: ${amount} บาท`);
+        }
+
+        function calculateTotalRevenue() {
+            let total = 0;
+            globalPaymentsList.forEach(pay => {
+                if (pay.status === 'ยืนยันการชำระเงินแล้ว') {
+                    total += (parseFloat(pay.amount) || 0);
+                }
+            });
+            return total;
         }
 
         function renderSuperAdminPaymentsList() {
             const container = document.getElementById('superAdminPaymentsContainer');
+            const totalRevenueEl = document.getElementById('superAdminTotalRevenue');
+            
+            if (totalRevenueEl) {
+                totalRevenueEl.textContent = calculateTotalRevenue().toLocaleString() + ' ฿';
+            }
+
             if(!container) return;
             container.innerHTML = '';
 
@@ -3169,7 +3283,9 @@
                 pay.status = 'ยืนยันการชำระเงินแล้ว';
                 localStorage.setItem('petcare_global_payments', JSON.stringify(globalPaymentsList));
 
-                if(pay.paymentType.includes('แพ็คเกจสมาชิกผู้ใช้')) {
+                sendDataToGoogleSheet('CONFIRM_PAYMENT', pay);
+
+                if(pay.paymentType && pay.paymentType.includes('แพ็คเกจสมาชิกผู้ใช้')) {
                     let userSub = {
                         active: true,
                         plan: pay.plan || '1 เดือน',
@@ -3179,11 +3295,11 @@
                     let allSubsMap = JSON.parse(localStorage.getItem('petcare_all_subs_map')) || {};
                     allSubsMap[pay.payerEmail] = userSub;
                     localStorage.setItem('petcare_all_subs_map', JSON.stringify(allSubsMap));
-                } else if(pay.paymentType.includes('แพ็คเกจโฆษณาคลินิก')) {
+                } else if(pay.paymentType && pay.paymentType.includes('แพ็คเกจโฆษณาคลินิก')) {
                     clinicAdPackageStatus.active = true;
                     clinicAdPackageStatus.status = 'ใช้งานปกติ';
                     localStorage.setItem('petcare_clinic_ad_status', JSON.stringify(clinicAdPackageStatus));
-                } else if(pay.paymentType.includes('ค่าจองคิวรายครั้ง')) {
+                } else if(pay.paymentType && pay.paymentType.includes('ค่าจองคิวรายครั้ง')) {
                     let allClinicIncomingMap = JSON.parse(localStorage.getItem('petcare_all_clinic_incoming_map')) || {};
                     for(let clinicKey in allClinicIncomingMap) {
                         let list = allClinicIncomingMap[clinicKey];
@@ -3234,7 +3350,7 @@
                     let div = document.createElement('div');
                     div.className = 'notification-item';
                     div.innerHTML = `<strong>${n.text}</strong><div class="time">${n.time}</div>`;
-                    container.appendChild(div);
+                    container.innerHTML += div.outerHTML;
                 });
                 
                 saveAccountNotifications([]);
