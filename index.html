@@ -793,7 +793,7 @@
                     <h3><i class="fas fa-cat" style="color: var(--primary-color);"></i> โรคและอาการป่วยในแมว</h3>
                     <ul style="padding-left: 18px; font-size: 0.82rem; color: #636e72; line-height: 1.6;">
                         <li><strong>โรคไข้หัดแมว (Panleukopenia):</strong> ซึม เบื่ออาหาร อาเจียน ท้องเสียรุนแรง</li>
-                        <li><strong>โรคระบบทางเดินปัสสาวะอักเสบ (FLUTD):</strong> ฉี่ไม่ออก ฉี่มีเลือดปน เบ่งฉี่</li>
+                        <li><strong>โรคระบบทางเดินปัสสาวะอักเสบ (FLUTD):</strong> ฉี่ไม่ออก ฉี่มีเลือดปن เบ่งฉี่</li>
                         <li><strong>โรคผิวหนังเชื้อรา:</strong> คัน เกา ขนร่วงเป็นวง มีสะเก็ดรังแค</li>
                     </ul>
                 </div>
@@ -1054,11 +1054,10 @@
                         <textarea id="clinicDescInput" rows="3" placeholder="เช่น รับรักษาโรคทั่วไป, ฉีดวัคซีน, ผ่าตัด, ทำหมัน"></textarea>
                     </div>
                     
-                    <!-- ส่วนอัปโหลดรูปร้าน -->
+                    <!-- ส่วนใส่ลิงก์รูปร้าน (ลบการอัปโหลดไฟล์จากเครื่องออกแล้ว) -->
                     <div class="form-row">
-                        <label><i class="fas fa-images"></i> รูปภาพร้าน (เลือกไฟล์จากเครื่อง หรือใส่ลิงก์ URL คั่นด้วยเครื่องหมาย ,)</label>
+                        <label><i class="fas fa-images"></i> รูปภาพร้าน (ใส่ลิงก์ URL คั่นด้วยเครื่องหมาย ,)</label>
                         <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 6px;">
-                            <input type="file" id="clinicImagesFiles" accept="image/*" multiple style="font-size: 0.75rem; padding: 6px; background: #fafbfc; border: 1.5px solid #dfe6e9; border-radius: 10px;" onchange="handleClinicFilesUpload(this)">
                             <textarea id="clinicImagesInput" rows="2" placeholder="https://image1.jpg, https://image2.jpg" oninput="previewClinicImages()"></textarea>
                         </div>
                         <div id="clinicGalleryPreviewContainer" class="clinic-gallery-preview"></div>
@@ -1254,7 +1253,7 @@
         </div>
     </div>
 
-    <!-- Modal เพิ่ม/แก้ไขสัตว์เลี้ยง -->
+    <!-- Modal เพิ่ม/แก้ไขสัตว์เลี้ยง (ลบการอัปโหลดไฟล์ ให้เหลือแค่ใส่ลิงก์ URL) -->
     <div id="catModal" class="modal">
         <div class="modal-content">
             <div class="close-btn" onclick="closeCatModal()"><i class="fas fa-times"></i></div>
@@ -1283,10 +1282,9 @@
                 <input type="number" step="0.1" id="modalCatWeightInput" placeholder="4.0">
             </div>
             <div class="form-row">
-                <label><i class="fas fa-image"></i> รูปภาพสัตว์เลี้ยง (เลือกไฟล์จากเครื่อง หรือ ใส่ลิงก์ URL)</label>
+                <label><i class="fas fa-image"></i> รูปภาพสัตว์เลี้ยง (ใส่ลิงก์ URL)</label>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <input type="file" id="modalCatFile" accept="image/*" style="font-size: 0.75rem; padding: 6px; background: #fafbfc; border: 1.5px solid #dfe6e9; border-radius: 10px;">
-                    <input type="text" id="modalCatAvatarInput" placeholder="หรือใส่ลิงก์ URL รูปภาพ เช่น https://...">
+                    <input type="text" id="modalCatAvatarInput" placeholder="ใส่ลิงก์ URL รูปภาพ เช่น https://...">
                 </div>
             </div>
             <button class="btn-action" style="width: 100%; margin-top: 10px;" onclick="saveCatPetData()">บันทึกข้อมูล</button>
@@ -1324,6 +1322,7 @@
         </div>
     </div>
 
+    <!-- Modal ชำระเงินค่าจองคิวคลินิก -->
     <div id="userBookingPaymentModal" class="modal">
         <div class="modal-content text-center">
             <div class="close-btn" onclick="closeUserBookingPaymentModal()"><i class="fas fa-times"></i></div>
@@ -1338,14 +1337,9 @@
                 </div>
 
                 <div class="form-row">
-                    <label>ชื่อบัญชีที่ใช้โอนเงิน</label>
-                    <input type="text" id="userBookingSenderAccountName" placeholder="ระบุชื่อบัญชีธนาคารหรือชื่อผู้โอนของคุณ">
+                    <label>ชื่อบัญชีที่ใช้โอนเงิน <span style="color: #e74c3c;">*บังคับใส่ข้อมูล</span></label>
+                    <input type="text" id="userBookingSenderAccountName" placeholder="ระบุชื่อบัญชีธนาคารหรือชื่อผู้โอนของคุณ" required>
                 </div>
-                <div class="form-row">
-                    <label>แนบสลิปการโอนเงินค่าจอง <span style="color: #e74c3c;">*บังคับใส่รูปภาพ</span></label>
-                    <input type="file" id="userBookingSlipFile" accept="image/*" style="font-size: 0.75rem;" onchange="previewSlipFile(this, 'userBookingSlipPreview')">
-                </div>
-                <div id="userBookingSlipPreview" style="margin-bottom: 10px;"></div>
             </div>
 
             <button class="btn-action" id="userBookingSubmitBtn" style="width: 100%; margin-top: 6px;" onclick="confirmUserBookingPayment()">ยืนยันการส่งคำขอจองคิว</button>
@@ -1567,7 +1561,7 @@
         ];
 
         let globalPaymentsList = JSON.parse(localStorage.getItem('petcare_global_payments')) || [
-            { id: 'p_init_1', payerEmail: 'user1@example.com', payerName: 'เจ้าของสัตว์เลี้ยง (ทองเอก)', senderAccount: 'ธนาคารกรุงเทพ (สมชาย ใจดี)', paymentType: 'ค่าจองคิวคลินิก (รักสัตว์เพ็ทแคร์)', amount: 30, slipUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=200&q=80', status: 'ยืนยันการชำระเงินแล้ว', timestamp: '10/01/2026, 10:00:00' },
+            { id: 'p_init_1', payerEmail: 'user1@example.com', payerName: 'เจ้าของสัตว์เลี้ยง (ทองเอก)', senderAccount: 'ธนาคารกรุงเทพ (สมชาย ใจดี)', paymentType: 'ค่าจองคิวคลินิก (รักสัตว์เพ็ทแคร์)', amount: 30, status: 'ยืนยันการชำระเงินแล้ว', timestamp: '10/01/2026, 10:00:00' },
             { id: 'p_init_2', payerEmail: 'user2@example.com', payerName: 'ผู้ใช้งานระบบ (สมัครแพ็คเกจ)', senderAccount: 'ธนาคารกสิกรไทย (วิไล รักสัตว์)', paymentType: 'แพ็คเกจสมาชิกผู้ใช้ (ราย 1 เดือน)', amount: 69, plan: 'ราย 1 เดือน', status: 'ยืนยันการชำระเงินแล้ว', timestamp: '15/02/2026, 11:30:00' },
             { id: 'p_init_3', payerEmail: 'clinic@example.com', payerName: 'คลินิกสัตว์ (ซื้อแพ็คเกจโฆษณา)', senderAccount: 'ธนาคารไทยพาณิชย์ (คลินิกพรหมพิราม)', paymentType: 'แพ็คเกจโฆษณาคลินิก (ราย 1 เดือน)', amount: 139, slipUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=200&q=80', status: 'ยืนยันการชำระเงินแล้ว', timestamp: '20/03/2026, 14:15:00' }
         ];
@@ -2193,7 +2187,6 @@
             document.getElementById('modalCatBreedInput').value = '';
             document.getElementById('modalCatWeightInput').value = '';
             document.getElementById('modalCatAvatarInput').value = '';
-            document.getElementById('modalCatFile').value = '';
             document.getElementById('catModal').style.display = 'flex';
         }
 
@@ -2207,8 +2200,7 @@
             document.getElementById('modalCatSpecies').value = pet.species || 'cat';
             document.getElementById('modalCatBreedInput').value = pet.breed;
             document.getElementById('modalCatWeightInput').value = pet.weight;
-            document.getElementById('modalCatAvatarInput').value = '';
-            document.getElementById('modalCatFile').value = '';
+            document.getElementById('modalCatAvatarInput').value = pet.avatar || '';
             document.getElementById('catModal').style.display = 'flex';
         }
 
@@ -2221,21 +2213,10 @@
             const breed = document.getElementById('modalCatBreedInput').value.trim();
             const weight = parseFloat(document.getElementById('modalCatWeightInput').value) || 3.0;
             const urlInput = document.getElementById('modalCatAvatarInput').value.trim();
-            const fileInput = document.getElementById('modalCatFile');
 
             if(!name) { alert('กรุณาระบุชื่อสัตว์เลี้ยง'); return; }
 
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    finishSavePet(id, name, species, breed, weight, e.target.result);
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else if (urlInput !== '') {
-                finishSavePet(id, name, species, breed, weight, urlInput);
-            } else {
-                finishSavePet(id, name, species, breed, weight, null);
-            }
+            finishSavePet(id, name, species, breed, weight, urlInput);
         }
 
         function finishSavePet(id, name, species, breed, weight, newAvatar) {
@@ -2618,7 +2599,6 @@
             populateCatSelectDropdowns();
             document.getElementById('clinicDetailModal').style.display = 'flex';
 
-            // แก้ไข: ใช้ setTimeout พร้อมสั่ง invalidateSize() เพื่อให้ Leaflet โหลดแผนที่ใน Modal ของฝั่งผู้ใช้งานได้ถูกต้อง
             setTimeout(() => {
                 initCustomerMap(selectedClinicForBooking.lat, selectedClinicForBooking.lng, selectedClinicForBooking.name);
             }, 300);
@@ -2636,7 +2616,6 @@
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(customerMapInstance);
             L.marker([lat, lng]).addTo(customerMapInstance).bindPopup(title).openPopup();
             
-            // แก้ไข: บังคับให้ Leaflet คำนวณขนาดใหม่ ป้องกันปัญหาแผนที่เทาหรือแสดงผลไม่เต็มกล่อง
             setTimeout(() => {
                 customerMapInstance.invalidateSize();
             }, 200);
@@ -2674,34 +2653,15 @@
             if(hasActivePackage) {
                 finalizeUserBookingDirectly();
             } else {
-                document.getElementById('userBookingPayInfo').innerHTML = `ค่าธรรมเนียมจองคิวรายครั้ง: <strong>30 บาท</strong><br>คลินิก: <strong>${tempBookingData.clinicName}</strong><br><span style="color:#e67e22; font-size:0.75rem;">(ท่านยังไม่ได้สมัครแพ็คเกจสมาชิก ต้องรอเจ้าหน้าที่ตรวจสอบสลิปและกดยืนยัน)</span>`;
+                document.getElementById('userBookingPayInfo').innerHTML = `ค่าธรรมเนียมจองคิวรายครั้ง: <strong>30 บาท</strong><br>คลินิก: <strong>${tempBookingData.clinicName}</strong><br><span style="color:#e67e22; font-size:0.75rem;">(ท่านยังไม่ได้สมัครแพ็คเกจสมาชิก ต้องกรอกชื่อบัญชีที่ใช้โอนเงินเพื่อให้เจ้าหน้าที่ตรวจสอบ)</span>`;
                 document.getElementById('bookingPaymentSectionBox').style.display = 'block';
                 document.getElementById('userBookingSenderAccountName').value = '';
-                document.getElementById('userBookingSlipFile').value = '';
-                document.getElementById('userBookingSlipPreview').innerHTML = '';
                 document.getElementById('userBookingPaymentModal').style.display = 'flex';
             }
         }
 
         function closeUserBookingPaymentModal() {
             document.getElementById('userBookingPaymentModal').style.display = 'none';
-        }
-
-        function previewSlipFile(input, previewElementId) {
-            const previewContainer = document.getElementById(previewElementId);
-            if(!previewContainer) return;
-            previewContainer.innerHTML = '';
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    let img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.style.cssText = 'max-width: 120px; max-height: 120px; border-radius: 8px; border: 1px solid #dfe6e9; margin-top: 6px;';
-                    previewContainer.appendChild(img);
-                    previewContainer.dataset.base64 = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
         }
 
         function finalizeUserBookingDirectly() {
@@ -2725,15 +2685,9 @@
 
         function confirmUserBookingPayment() {
             const senderAcc = document.getElementById('userBookingSenderAccountName').value.trim();
-            const previewContainer = document.getElementById('userBookingSlipPreview');
-            let slipBase64 = previewContainer.dataset.base64 || '';
             
             if(!senderAcc) {
                 alert('กรุณากรอกชื่อบัญชีที่ใช้โอนเงิน');
-                return;
-            }
-            if(!slipBase64) {
-                alert('กรุณาแนบรูปภาพสลิปการโอนเงินค่าจองรายครั้งก่อนกดบันทึก');
                 return;
             }
 
@@ -2755,7 +2709,6 @@
                 senderAccount: senderAcc,
                 paymentType: 'ค่าจองคิวรายครั้ง (' + tempBookingData.clinicName + ')',
                 amount: 30,
-                slipUrl: slipBase64,
                 status: 'รอเจ้าหน้าที่กดยืนยัน',
                 timestamp: new Date().toLocaleString('th-TH')
             };
@@ -2767,7 +2720,7 @@
             triggerAdminEmailNotification(loggedInUserEmail || 'user@petcare.com', 'ค่าจองคิวรายครั้ง', 30);
 
             closeUserBookingPaymentModal();
-            alert('ส่งสลิปค่าจองรายครั้งสำเร็จ! สถานะ: รอผู้พัฒนาระบบกลางกดยืนยันการจ่ายเงิน');
+            alert('ส่งข้อมูลการโอนเงินค่าจองสำเร็จ! สถานะ: รอผู้พัฒนาระบบกลางกดยืนยันการจ่ายเงิน');
             addNotification(`ส่งคำขอจองคิว (จ่ายรายครั้ง): ${tempBookingData.clinicName}`);
             renderUserBookingsList();
         }
@@ -2875,27 +2828,6 @@
             previewClinicImages();
         }
 
-        function handleClinicFilesUpload(input) {
-            if (input.files && input.files.length > 0) {
-                let currentVal = document.getElementById('clinicImagesInput').value.trim();
-                let urlsArray = currentVal ? currentVal.split(',').map(s => s.trim()).filter(s => s.length > 0) : [];
-
-                let filesProcessed = 0;
-                for (let i = 0; i < input.files.length; i++) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        urlsArray.push(e.target.result);
-                        filesProcessed++;
-                        if (filesProcessed === input.files.length) {
-                            document.getElementById('clinicImagesInput').value = urlsArray.join(', ');
-                            previewClinicImages();
-                        }
-                    };
-                    reader.readAsDataURL(input.files[i]);
-                }
-            }
-        }
-
         function previewClinicImages() {
             const inputVal = document.getElementById('clinicImagesInput').value;
             const container = document.getElementById('clinicGalleryPreviewContainer');
@@ -2921,7 +2853,6 @@
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(adminMapInstance);
             L.marker([myClinicData.lat, myClinicData.lng]).addTo(adminMapInstance).bindPopup(myClinicData.name).openPopup();
             
-            // แก้ไข: บังคับให้อัปเดตขนาดแผนที่ของฝั่งแอดมินคลินิก
             setTimeout(() => {
                 adminMapInstance.invalidateSize();
             }, 200);
@@ -2968,7 +2899,6 @@
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(m);
                     L.marker([myClinicData.lat, myClinicData.lng]).addTo(m).bindPopup(myClinicData.name).openPopup();
                     
-                    // แก้ไข: บังคับอัปเดตขนาดแผนที่หน้าข้อมูลคลินิกของฉัน
                     setTimeout(() => {
                         m.invalidateSize();
                     }, 200);
@@ -3169,6 +3099,23 @@
             document.getElementById('clinicPaymentModal').style.display = 'none';
         }
 
+        function previewSlipFile(input, previewElementId) {
+            const previewContainer = document.getElementById(previewElementId);
+            if(!previewContainer) return;
+            previewContainer.innerHTML = '';
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    let img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.cssText = 'max-width: 120px; max-height: 120px; border-radius: 8px; border: 1px solid #dfe6e9; margin-top: 6px;';
+                    previewContainer.appendChild(img);
+                    previewContainer.dataset.base64 = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
         function submitClinicPaymentSlip() {
             const senderAcc = document.getElementById('clinicSenderAccountName').value.trim();
             const previewContainer = document.getElementById('clinicSlipPreview');
@@ -3269,7 +3216,7 @@
                             <span style="font-size: 0.75rem; font-weight: 600; color: #2d3436; display: block; margin-bottom: 4px;">สลิปโอนเงิน:</span>
                             <img src="${pay.slipUrl}" style="max-width: 150px; max-height: 150px; border-radius: 8px; border: 1px solid #dfe6e9; cursor: pointer;" onclick="window.open('${pay.slipUrl}')">
                         </div>
-                    ` : `<p style="font-size: 0.72rem; color: #7f8c8d; font-style: italic; margin-bottom: 10px;">* รายการสมัครแพ็คเกจสมาชิกผู้ใช้ (โอนยืนยันผ่านบัญชี)</p>`}
+                    ` : `<p style="font-size: 0.72rem; color: #7f8c8d; font-style: italic; margin-bottom: 10px;">* รายการชำระเงินผ่านการระบุชื่อบัญชีโอนเงิน</p>`}
 
                     ${!isConfirmed ? `<button class="btn-action" style="background: linear-gradient(135deg, #27ae60, #2ecc71);" onclick="superAdminConfirmPayment('${pay.id}')"><i class="fas fa-check"></i> กดยืนยันการจ่ายเงิน</button>` : ''}
                 `;
